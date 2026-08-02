@@ -69,8 +69,6 @@ body{
 
 
 
-/* Fondo */
-
 body::before{
 
     content:"";
@@ -83,7 +81,7 @@ body::before{
 
     radial-gradient(circle at center,
 
-    rgba(91,140,255,.15),
+    rgba(91,140,blue,.15),
 
     transparent 45%);
 
@@ -92,8 +90,6 @@ body::before{
 }
 
 
-
-/* CONTENEDOR PRINCIPAL */
 
 #app{
 
@@ -124,8 +120,6 @@ body::before{
 }
 
 
-
-/* CONTENIDO CENTRAL */
 
 .home-content{
 
@@ -177,7 +171,7 @@ body::before{
 
 
 
-/* MENU LATERAL */
+/* MENU */
 
 .side-menu{
 
@@ -261,6 +255,54 @@ body::before{
 
 /* PERFIL */
 
+.profile-name{
+
+    margin-bottom:35px;
+
+    font-size:2.2rem;
+
+    letter-spacing:3px;
+
+}
+
+
+
+.profile-stats{
+
+    width:300px;
+
+    padding:25px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    background:rgba(17,24,39,.75);
+
+    backdrop-filter:blur(15px);
+
+    -webkit-backdrop-filter:blur(15px);
+
+    border:1px solid var(--border);
+
+    border-radius:22px;
+
+}
+
+
+
+.profile-stats p{
+
+    color:var(--text-secondary);
+
+    font-size:1.1rem;
+
+}
+
+
+
 .profile-input{
 
     display:flex;
@@ -299,8 +341,6 @@ body::before{
 
     backdrop-filter:blur(10px);
 
-    transition:.25s ease;
-
 }
 
 
@@ -316,8 +356,6 @@ body::before{
 .profile-input input:focus{
 
     border-color:var(--primary);
-
-    box-shadow:0 0 20px rgba(91,140,255,.25);
 
 }
 
@@ -343,8 +381,6 @@ body::before{
 
     cursor:pointer;
 
-    transition:.25s ease;
-
 }
 
 
@@ -352,8 +388,6 @@ body::before{
 .profile-input button:hover{
 
     background:rgba(91,140,255,.3);
-
-    transform:translateY(-2px);
 
 }
 
@@ -368,7 +402,6 @@ body::before{
         opacity:0;
 
     }
-
 
     to{
 
@@ -389,7 +422,6 @@ body::before{
         transform:translate(80px,-50%);
 
     }
-
 
     to{
 
@@ -451,7 +483,6 @@ body::before{
     }
 
 
-
     .home-content{
 
         padding:20px;
@@ -459,7 +490,6 @@ body::before{
         margin-bottom:30px;
 
     }
-
 
 
     .home-content h1{
@@ -471,7 +501,6 @@ body::before{
     }
 
 
-
     .home-content p{
 
         font-size:.95rem;
@@ -479,7 +508,6 @@ body::before{
         line-height:1.7;
 
     }
-
 
 
     .side-menu{
@@ -499,7 +527,6 @@ body::before{
     }
 
 
-
     .side-menu a{
 
         text-align:center;
@@ -507,7 +534,6 @@ body::before{
         padding:13px;
 
     }
-
 
 
     .profile-input{
@@ -519,7 +545,6 @@ body::before{
     }
 
 
-
     .profile-input input{
 
         width:100%;
@@ -527,7 +552,6 @@ body::before{
         max-width:280px;
 
     }
-
 
 
 }
