@@ -1,266 +1,311 @@
-const VERSION = "1.0.0";
+const VERSION = "2.0.0";
+
+const STORAGE_KEY = "pac_profile";
 
 const MENSAJES_CARGA = [
-"Inicializando...",
-"Cargando recuerdos...",
-"Preparando la aventura...",
-"Sincronizando corazones...",
-"¡Todo listo!"
+
+    "Preparando el primer paso...",
+
+    "Levantando el camino...",
+
+    "Superando obstáculos...",
+
+    "Casi estamos listos...",
+
+    "Todo preparado."
+
 ];
 
-document.addEventListener("DOMContentLoaded", iniciarAplicacion);
+document.addEventListener(
+
+    "DOMContentLoaded",
+
+    iniciarAplicacion
+
+);
 
 function iniciarAplicacion(){
 
-const primeraVez = !localStorage.getItem("pas_profile");
+    const primeraVez = !localStorage.getItem(STORAGE_KEY);
 
-const loading = document.getElementById("loading-screen");
-const popup = document.getElementById("welcome-popup");
+    const loading = document.getElementById("loading-screen");
 
-if(loading || popup){
+    const popup = document.getElementById("welcome-popup");
 
-    if(primeraVez){
+    if(loading || popup){
 
-        mostrarPantallaCarga();
+        if(primeraVez){
 
-    }else{
+            mostrarPantallaCarga();
 
-        if(loading){
+        }else{
 
-            loading.style.display = "none";
+            if(loading){
 
-        }
+                loading.style.display="none";
 
-        if(popup){
+            }
 
-            popup.style.display = "none";
+            if(popup){
+
+                popup.style.display="none";
+
+            }
 
         }
 
     }
 
-}
+    if(document.getElementById("profile-container")){
 
-if(document.getElementById("profile-container")){
+        cargarPerfil();
 
-    cargarPerfil();
+    }
 
-}
+    activarTransiciones();
+
+    registrarServiceWorker();
 
 }
 
 function mostrarPantallaCarga(){
 
-const loading = document.getElementById("loading-screen");
+    const loading = document.getElementById("loading-screen");
 
-if(!loading) return;
+    if(!loading){
 
-const barra = loading.querySelector(".loading-progress");
-
-let progreso = 0;
-
-const intervalo = setInterval(()=>{
-
-    progreso++;
-
-    if(barra){
-
-        barra.style.width = progreso + "%";
+        return;
 
     }
 
-    if(progreso === 20){
+    const barra = loading.querySelector(".loading-progress");
 
-        actualizarMensajeCarga(MENSAJES_CARGA[1]);
+    let progreso = 0;
 
-    }
+    actualizarMensajeCarga(MENSAJES_CARGA[0]);
 
-    if(progreso === 45){
+    const intervalo = setInterval(()=>{
 
-        actualizarMensajeCarga(MENSAJES_CARGA[2]);
+        progreso++;
 
-    }
+        if(barra){
 
-    if(progreso === 70){
+            barra.style.width = progreso + "%";
 
-        actualizarMensajeCarga(MENSAJES_CARGA[3]);
+        }
 
-    }
+        if(progreso===20){
 
-    if(progreso === 95){
+            actualizarMensajeCarga(MENSAJES_CARGA[1]);
 
-        actualizarMensajeCarga(MENSAJES_CARGA[4]);
+        }
 
-    }
+        if(progreso===45){
 
-    if(progreso >= 100){
+            actualizarMensajeCarga(MENSAJES_CARGA[2]);
 
-        clearInterval(intervalo);
+        }
 
-        setTimeout(()=>{
+        if(progreso===70){
 
-            loading.style.opacity = "0";
+            actualizarMensajeCarga(MENSAJES_CARGA[3]);
+
+        }
+
+        if(progreso===95){
+
+            actualizarMensajeCarga(MENSAJES_CARGA[4]);
+
+        }
+
+        if(progreso>=100){
+
+            clearInterval(intervalo);
 
             setTimeout(()=>{
 
-                loading.style.display = "none";
+                loading.style.opacity="0";
 
-                mostrarPopupBienvenida();
+                setTimeout(()=>{
+
+                    loading.style.display="none";
+
+                    mostrarPopupBienvenida();
+
+                },500);
 
             },500);
 
-        },500);
+        }
 
-    }
-
-},70);
+    },70);
 
 }
 
 function actualizarMensajeCarga(texto){
 
-const mensaje = document.querySelector(".loading-text");
+    const mensaje = document.querySelector(".loading-text");
 
-if(mensaje){
+    if(mensaje){
 
-    mensaje.textContent = texto;
+        mensaje.textContent = texto;
 
-}
+    }
 
 }
 
 function mostrarPopupBienvenida(){
 
-const popup = document.getElementById("welcome-popup");
+    const popup = document.getElementById("welcome-popup");
 
-if(!popup) return;
+    if(!popup){
 
-popup.style.display = "flex";
+        return;
 
-const boton = document.getElementById("enter-button");
+    }
 
-if(boton){
+    popup.style.display="flex";
 
-    boton.onclick = ()=>{
+    const boton = document.getElementById("enter-button");
 
-        crearPerfil();
+    if(boton){
 
-        popup.style.opacity = "0";
+        boton.onclick=()=>{
 
-        setTimeout(()=>{
+            crearPerfil();
 
-            popup.style.display = "none";
+            popup.style.opacity="0";
 
-        },500);
+            setTimeout(()=>{
 
-    };
+                popup.style.display="none";
 
-}
+            },500);
+
+        };
+
+    }
 
 }
 
 function crearPerfil(){
 
-const perfil = {
+    const perfil={
 
-    nombre:"",
-    puntos:0,
-    monedas:0,
-    logros:[],
-    skins:[],
-    inventario:[],
-    ajustes:{},
-    juegos:0,
-    version:VERSION
+        nombre:"",
 
-};
+        puntos:0,
 
-localStorage.setItem(
+        monedas:0,
 
-    "pas_profile",
+        puntosTotales:0,
 
-    JSON.stringify(perfil)
+        recordGlobal:0,
 
-);
+        juegos:0,
+
+        logros:[],
+
+        skinsCompradas:[],
+
+        inventario:[],
+
+        ajustes:{},
+
+        version:VERSION
+
+    };
+
+    localStorage.setItem(
+
+        STORAGE_KEY,
+
+        JSON.stringify(perfil)
+
+    );
 
 }
+
 
 function cargarPerfil(){
 
-const contenedor = document.getElementById("profile-container");
+    const contenedor = document.getElementById("profile-container");
 
-const perfil = JSON.parse(
+    const perfil = JSON.parse(
 
-    localStorage.getItem("pas_profile")
+        localStorage.getItem(STORAGE_KEY)
 
-);
+    );
 
-if(!perfil){
+    if(!contenedor || !perfil){
 
-    return;
+        return;
 
-}
+    }
 
-if(!perfil.nombre){
+    if(!perfil.nombre){
 
-    contenedor.innerHTML = `
+        contenedor.innerHTML = `
 
-        <p>
+            <p>
 
-            Ingresa un nombre de usuario
+                Elige un nombre de usuario
 
-        </p>
+            </p>
 
-        <div class="profile-input">
+            <div class="profile-input">
 
-            <input
-            id="username-input"
-            type="text"
-            placeholder="Nombre">
+                <input
+                id="username-input"
+                type="text"
+                maxlength="20"
+                placeholder="Nombre">
 
-            <button id="confirm-name">
+                <button id="confirm-name">
 
-                Confirmar
+                    Confirmar
 
-            </button>
+                </button>
 
-        </div>
+            </div>
 
-    `;
+        `;
 
-    document
+        document
 
-    .getElementById("confirm-name")
+        .getElementById("confirm-name")
 
-    .addEventListener("click",()=>{
+        .addEventListener("click",()=>{
 
-        const nombre = document
+            const nombre = document
 
-        .getElementById("username-input")
+            .getElementById("username-input")
 
-        .value
+            .value
 
-        .trim();
+            .trim();
 
-        if(nombre.length > 0){
+            if(nombre.length>0){
 
-            perfil.nombre = nombre;
+                perfil.nombre = nombre;
 
-            localStorage.setItem(
+                localStorage.setItem(
 
-                "pas_profile",
+                    STORAGE_KEY,
 
-                JSON.stringify(perfil)
+                    JSON.stringify(perfil)
 
-            );
+                );
 
-            cargarPerfil();
+                cargarPerfil();
 
-        }
+            }
 
-    });
+        });
 
-}else{
+        return;
+
+    }
 
     contenedor.innerHTML = `
 
@@ -286,7 +331,25 @@ if(!perfil.nombre){
 
             <p>
 
-                Skins: 0/0
+                Récord global: ${perfil.recordGlobal}
+
+            </p>
+
+            <p>
+
+                Puntos totales: ${perfil.puntosTotales}
+
+            </p>
+
+            <p>
+
+                Juegos completados: ${perfil.juegos}
+
+            </p>
+
+            <p>
+
+                Skins: ${perfil.skinsCompradas.length}
 
             </p>
 
@@ -296,46 +359,83 @@ if(!perfil.nombre){
 
 }
 
+function activarTransiciones(){
+
+    document
+
+    .querySelectorAll("a")
+
+    .forEach((enlace)=>{
+
+        const destino = enlace.getAttribute("href");
+
+        if(
+
+            !destino ||
+
+            destino.startsWith("#") ||
+
+            destino.startsWith("http") ||
+
+            enlace.target==="_blank"
+
+        ){
+
+            return;
+
+        }
+
+        enlace.addEventListener("click",(e)=>{
+
+            e.preventDefault();
+
+            document.body.classList.add("page-exit");
+
+            setTimeout(()=>{
+
+                window.location.href = destino;
+
+            },350);
+
+        });
+
+    });
+
 }
 
-document.querySelectorAll("a").forEach(enlace=>{
 
-const destino = enlace.getAttribute("href");
+function obtenerPerfil(){
 
-if(
+    return JSON.parse(
 
-    !destino ||
+        localStorage.getItem(STORAGE_KEY)
 
-    destino.startsWith("#") ||
-
-    destino.startsWith("http") ||
-
-    enlace.target === "_blank"
-
-){
-
-    return;
+    );
 
 }
 
-enlace.addEventListener("click",e=>{
+function guardarPerfil(perfil){
 
-    e.preventDefault();
+    localStorage.setItem(
 
-    document.body.classList.add("page-exit");
+        STORAGE_KEY,
 
-    setTimeout(()=>{
+        JSON.stringify(perfil)
 
-        window.location.href = destino;
+    );
 
-    },350);
+}
 
-});
+function registrarServiceWorker(){
 
-});
+    if("serviceWorker" in navigator){
 
-if("serviceWorker" in navigator){
+        navigator.serviceWorker.register(
 
-navigator.serviceWorker.register("service-worker.js");
+            "service-worker.js"
+
+        );
+
+    }
 
 }
