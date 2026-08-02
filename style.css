@@ -1,22 +1,30 @@
 @font-face{
 
     font-family:"SF Pro";
+
     src:url("./SF-Pro.woff2") format("woff2");
+
     font-weight:100 900;
+
     font-style:normal;
+
     font-display:swap;
 
 }
 
+
 :root{
 
     --background:#05070C;
+
     --surface:#111827;
 
     --text:#F5F5F5;
+
     --text-secondary:#A8B3C2;
 
     --primary:#5B8CFF;
+
     --primary-hover:#79A2FF;
 
     --border:rgba(255,255,255,.08);
@@ -25,13 +33,19 @@
 
 }
 
+
+
 *{
 
     margin:0;
+
     padding:0;
+
     box-sizing:border-box;
 
 }
+
+
 
 html{
 
@@ -39,264 +53,240 @@ html{
 
 }
 
+
+
 body{
 
     font-family:"SF Pro",sans-serif;
 
-    background:
-    radial-gradient(circle at top,rgba(91,140,255,.12),transparent 55%),
-    linear-gradient(180deg,#09111F 0%,#05070C 100%);
+    background:var(--background);
 
     color:var(--text);
 
-    width:100vw;
-    height:100vh;
-
     overflow:hidden;
 
-    user-select:none;
-    -webkit-user-select:none;
-    -webkit-tap-highlight-color:transparent;
+}
+
+
+
+/* Fondo */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+
+    radial-gradient(circle at center,
+
+    rgba(91,140,255,.15),
+
+    transparent 45%);
+
+    z-index:-1;
 
 }
 
-img{
 
-    user-drag:none;
-    -webkit-user-drag:none;
 
-}
-
-button,
-input{
-
-    font-family:inherit;
-    outline:none;
-
-}
-
-button{
-
-    cursor:pointer;
-
-}
+/* CONTENEDOR PRINCIPAL */
 
 #app{
 
-    width:100%;
+    width:100vw;
+
     height:100vh;
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    animation:pageEnter .45s ease forwards;
-
 }
 
-/* ===========================
-   PANTALLA DE CARGA
-=========================== */
 
-.loading-screen{
 
-    position:fixed;
-    inset:0;
+.home-container{
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-
-    padding:35px;
-
-    z-index:9999;
-
-}
-
-.loading-logo{
-
-    font-size:2.5rem;
-    font-weight:800;
-
-    letter-spacing:8px;
-
-    text-align:center;
-
-    color:white;
-
-    margin-bottom:70px;
-
-    animation:logoEnter .8s ease forwards;
-
-}
-
-.loading-bar{
-
-    width:min(420px,100%);
-    height:10px;
-
-    border-radius:999px;
-
-    overflow:hidden;
-
-    background:rgba(255,255,255,.08);
-
-    border:1px solid rgba(255,255,255,.05);
-
-}
-
-.loading-fill{
-
-    width:0%;
+    width:100%;
 
     height:100%;
 
-    background:linear-gradient(90deg,var(--primary),var(--primary-hover));
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    position:relative;
+
+    animation:pageEnter .7s ease forwards;
 
 }
 
-.loading-text{
 
-    margin-top:28px;
 
-    font-size:1rem;
+/* CONTENIDO CENTRAL */
 
-    color:var(--text-secondary);
+.home-content{
 
-    letter-spacing:1px;
+    width:100%;
+
+    max-width:750px;
 
     text-align:center;
 
-}
-
-/* ===========================
-   POPUPS
-=========================== */
-
-.popup-overlay{
-
-    position:fixed;
-    inset:0;
-
     display:flex;
-    justify-content:center;
+
+    flex-direction:column;
+
     align-items:center;
-
-    padding:30px;
-
-    background:rgba(0,0,0,.72);
-
-    backdrop-filter:blur(8px);
-    -webkit-backdrop-filter:blur(8px);
-
-    z-index:10000;
-
-}
-
-.popup{
-
-    width:min(700px,100%);
 
     padding:40px;
 
-    background:rgba(17,24,39,.92);
+}
 
-    border:1px solid var(--border);
 
-    border-radius:var(--radius);
 
-    text-align:center;
+.home-content h1{
 
-    animation:popupEnter .6s cubic-bezier(.22,1,.36,1) forwards;
+    font-size:4rem;
+
+    letter-spacing:10px;
+
+    font-weight:800;
+
+    margin-bottom:15px;
 
 }
 
-.popup h1{
 
-    font-size:2rem;
+
+.home-content h2{
+
+    font-size:1.4rem;
+
+    letter-spacing:8px;
 
     color:var(--primary);
 
-    margin-bottom:20px;
+    margin-bottom:40px;
 
 }
 
-.popup p{
+
+
+.home-content p{
+
+    max-width:650px;
 
     color:var(--text-secondary);
 
-    font-size:1.05rem;
+    font-size:1.15rem;
 
-    line-height:1.8;
+    line-height:1.9;
 
-    margin-bottom:35px;
+    margin-bottom:25px;
 
 }
 
-.popup button{
 
-    border:none;
 
-    padding:15px 36px;
+/* MENU LATERAL */
 
-    border-radius:12px;
+.side-menu{
 
-    background:var(--primary);
+    position:fixed;
 
-    color:white;
+    right:35px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+
+    width:230px;
+
+    padding:25px;
+
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+
+    background:rgba(17,24,39,.75);
+
+    backdrop-filter:blur(15px);
+
+    -webkit-backdrop-filter:blur(15px);
+
+
+    border:1px solid var(--border);
+
+    border-radius:22px;
+
+
+    animation:menuEnter .7s cubic-bezier(.22,1,.36,1) forwards;
+
+}
+
+
+
+.side-menu a{
+
+    text-decoration:none;
+
+    color:var(--text-secondary);
+
+
+    padding:15px 20px;
+
+
+    border-radius:14px;
+
 
     font-size:1rem;
 
-    transition:.25s;
+    font-weight:600;
+
+
+    transition:.25s ease;
+
+
+    border:1px solid transparent;
 
 }
 
-.popup button:hover{
 
-    background:var(--primary-hover);
 
-}
+.side-menu a:hover{
 
-/* ===========================
-   ANIMACIONES
-=========================== */
+    color:white;
 
-@keyframes popupEnter{
-
-    from{
-
-        opacity:0;
-        transform:translateY(-60px);
-
-    }
-
-    to{
-
-        opacity:1;
-        transform:translateY(0);
-
-    }
+    background:rgba(255,255,255,.05);
 
 }
 
-@keyframes popupExit{
 
-    from{
 
-        opacity:1;
-        transform:scale(1);
+/* SECCION ACTIVA */
 
-    }
+.side-menu a.active{
 
-    to{
+    color:white;
 
-        opacity:0;
-        transform:scale(.95);
+    border:1px solid rgba(255,255,255,.9);
 
-    }
+    background:rgba(91,140,255,.12);
 
 }
+
+
+
+/* ANIMACIONES */
+
 
 @keyframes pageEnter{
 
@@ -306,6 +296,7 @@ button{
 
     }
 
+
     to{
 
         opacity:1;
@@ -314,89 +305,111 @@ button{
 
 }
 
-@keyframes pageExit{
 
-    from{
 
-        opacity:1;
-
-    }
-
-    to{
-
-        opacity:0;
-
-    }
-
-}
-
-@keyframes logoEnter{
+@keyframes menuEnter{
 
     from{
 
         opacity:0;
-        transform:translateY(-25px);
+
+        transform:translate(80px,-50%);
 
     }
+
 
     to{
 
         opacity:1;
-        transform:translateY(0);
+
+        transform:translate(0,-50%);
 
     }
 
 }
 
-/* ===========================
-   TABLET
-=========================== */
+
+
+/* TABLET */
 
 @media(max-width:1200px){
 
+
+    .home-content h1{
+
+        font-size:3.2rem;
+
+    }
+
+
+    .side-menu{
+
+        right:20px;
+
+        width:210px;
+
+    }
+
+
 }
 
-/* ===========================
-   MÓVIL
-=========================== */
+
+
+/* MOVIL */
 
 @media(max-width:900px){
 
-    .loading-logo{
 
-        font-size:1.9rem;
+    body{
 
-        letter-spacing:4px;
-
-        margin-bottom:55px;
+        overflow:auto;
 
     }
 
-    .loading-bar{
 
-        height:8px;
+    .home-container{
 
-    }
+        min-height:100vh;
 
-    .loading-text{
+        flex-direction:column;
 
-        font-size:.9rem;
-
-    }
-
-    .popup{
-
-        padding:30px;
+        padding:40px 20px;
 
     }
 
-    .popup h1{
 
-        font-size:1.6rem;
+
+    .home-content{
+
+        padding:20px;
+
+        margin-bottom:30px;
 
     }
 
-    .popup p{
+
+
+    .home-content h1{
+
+        font-size:2.2rem;
+
+        letter-spacing:5px;
+
+    }
+
+
+
+    .home-content h2{
+
+        font-size:1rem;
+
+        letter-spacing:5px;
+
+    }
+
+
+
+    .home-content p{
 
         font-size:.95rem;
 
@@ -404,10 +417,35 @@ button{
 
     }
 
-    .popup button{
+
+
+    .side-menu{
+
+        position:relative;
+
+        right:auto;
+
+        top:auto;
+
+        transform:none;
+
 
         width:100%;
 
+
+        animation:none;
+
     }
+
+
+
+    .side-menu a{
+
+        text-align:center;
+
+        padding:13px;
+
+    }
+
 
 }
