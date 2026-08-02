@@ -1,0 +1,17 @@
+{
+    "name": "POR ALGO CREAMOS",
+    "short_name": "POR ALGO CREAMOS",
+    "description": "Una pequeña aventura creada especialmente para ti.",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#05070C",
+    "theme_color": "#05070C",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "favicon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
