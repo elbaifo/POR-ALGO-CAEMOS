@@ -5,7 +5,10 @@ const startScreen = document.getElementById("start-screen");
 const gameOverScreen = document.getElementById("game-over");
 const restartButton = document.getElementById("restart-button");
 
-const player = {
+const scoreElement = document.getElementById("score");
+const finalScore = document.getElementById("final-score");
+
+const player={
 
     x:80,
 
@@ -21,16 +24,15 @@ const player = {
 
 };
 
+let started=false;
 
-let started = false;
+let gameRunning=false;
 
-let gameRunning = false;
+let obstacles=[];
 
-let obstacles = [];
+let frame=0;
 
-let frame = 0;
-
-
+let score=0;
 
 function drawBackground(){
 
@@ -39,8 +41,6 @@ function drawBackground(){
     ctx.fillRect(0,0,canvas.width,canvas.height);
 
 }
-
-
 
 function drawPlayer(){
 
@@ -54,23 +54,19 @@ function drawPlayer(){
 
 }
 
-
-
 function createObstacle(){
 
-    const gap = 180;
+    const gap=180;
 
-    const minHeight = 80;
+    const minHeight=80;
 
-    const maxHeight = canvas.height - gap - minHeight;
+    const maxHeight=canvas.height-gap-minHeight;
 
+    const topHeight=Math.floor(
 
-    const topHeight = Math.floor(
-
-        Math.random() * (maxHeight - minHeight) + minHeight
+        Math.random()*(maxHeight-minHeight)+minHeight
 
     );
-
 
     obstacles.push({
 
@@ -80,23 +76,21 @@ function createObstacle(){
 
         top:topHeight,
 
-        bottom:canvas.height - topHeight - gap,
+        bottom:canvas.height-topHeight-gap,
 
-        speed:3
+        speed:3,
+
+        passed:false
 
     });
 
 }
 
-
-
 function drawObstacles(){
 
     ctx.fillStyle="#5B8CFF";
 
-
     obstacles.forEach((obstacle)=>{
-
 
         ctx.fillRect(
 
@@ -110,12 +104,11 @@ function drawObstacles(){
 
         );
 
-
         ctx.fillRect(
 
             obstacle.x,
 
-            canvas.height - obstacle.bottom,
+            canvas.height-obstacle.bottom,
 
             obstacle.width,
 
@@ -123,33 +116,37 @@ function drawObstacles(){
 
         );
 
-
     });
 
 }
-
-
 
 function updateObstacles(){
 
     obstacles.forEach((obstacle)=>{
 
-        obstacle.x -= obstacle.speed;
+        obstacle.x-=obstacle.speed;
+
+        if(!obstacle.passed && obstacle.x+obstacle.width<player.x){
+
+            obstacle.passed=true;
+
+            score++;
+
+            scoreElement.textContent=score;
+
+        }
 
     });
 
+    obstacles=obstacles.filter((obstacle)=>{
 
-    obstacles = obstacles.filter((obstacle)=>{
-
-        return obstacle.x + obstacle.width > 0;
+        return obstacle.x+obstacle.width>0;
 
     });
-
 
     frame++;
 
-
-    if(frame % 120 === 0){
+    if(frame%120===0){
 
         createObstacle();
 
@@ -157,50 +154,37 @@ function updateObstacles(){
 
 }
 
-
-
 function checkCollision(){
 
-
-    if(player.y - player.radius <= 0){
-
-        endGame();
-
-    }
-
-
-    if(player.y + player.radius >= canvas.height){
+    if(player.y-player.radius<=0){
 
         endGame();
 
     }
 
+    if(player.y+player.radius>=canvas.height){
 
+        endGame();
+
+    }
 
     obstacles.forEach((obstacle)=>{
 
+        const hitX=
 
-        const hitX =
+        player.x+player.radius>obstacle.x &&
 
-        player.x + player.radius > obstacle.x &&
+        player.x-player.radius<obstacle.x+obstacle.width;
 
-        player.x - player.radius < obstacle.x + obstacle.width;
+        const hitTop=
 
+        player.y-player.radius<obstacle.top;
 
+        const hitBottom=
 
-        const hitTop =
+        player.y+player.radius>
 
-        player.y - player.radius < obstacle.top;
-
-
-
-        const hitBottom =
-
-        player.y + player.radius >
-
-        canvas.height - obstacle.bottom;
-
-
+        canvas.height-obstacle.bottom;
 
         if(hitX && (hitTop || hitBottom)){
 
@@ -208,28 +192,19 @@ function checkCollision(){
 
         }
 
-
     });
 
-
 }
-
-
 
 function updatePlayer(){
 
+    player.velocity+=player.gravity;
 
-    player.velocity += player.gravity;
-
-    player.y += player.velocity;
-
+    player.y+=player.velocity;
 
 }
 
-
-
 function update(){
-
 
     if(!gameRunning){
 
@@ -237,16 +212,13 @@ function update(){
 
     }
 
-
     updatePlayer();
 
     updateObstacles();
 
     checkCollision();
 
-
 }
-
 
 
 function render(){
@@ -259,16 +231,13 @@ function render(){
 
 }
 
-
-
 function startGame(){
-
 
     if(!gameRunning){
 
-        started = true;
+        started=true;
 
-        gameRunning = true;
+        gameRunning=true;
 
         startScreen.style.display="none";
 
@@ -276,50 +245,43 @@ function startGame(){
 
     }
 
-
-    player.velocity = player.jump;
-
+    player.velocity=player.jump;
 
 }
-
-
 
 function endGame(){
 
+    gameRunning=false;
 
-    gameRunning = false;
+    finalScore.textContent=score;
 
     gameOverScreen.style.display="flex";
 
-
 }
-
-
 
 function restartGame(){
 
+    player.y=300;
 
-    player.y = 300;
+    player.velocity=0;
 
-    player.velocity = 0;
+    obstacles=[];
 
-    obstacles = [];
+    frame=0;
 
-    frame = 0;
+    score=0;
 
+    scoreElement.textContent=0;
+
+    finalScore.textContent=0;
 
     gameOverScreen.style.display="none";
 
-
-    gameRunning = true;
-
+    gameRunning=true;
 
 }
 
-
-
 document.addEventListener("keydown",(e)=>{
-
 
     if(e.code==="Space"){
 
@@ -329,18 +291,13 @@ document.addEventListener("keydown",(e)=>{
 
     }
 
-
 });
-
-
 
 startScreen.addEventListener("click",()=>{
 
     startGame();
 
 });
-
-
 
 startScreen.addEventListener("touchstart",(e)=>{
 
@@ -350,15 +307,11 @@ startScreen.addEventListener("touchstart",(e)=>{
 
 },{passive:false});
 
-
-
 canvas.addEventListener("click",()=>{
 
     startGame();
 
 });
-
-
 
 canvas.addEventListener("touchstart",(e)=>{
 
@@ -368,19 +321,15 @@ canvas.addEventListener("touchstart",(e)=>{
 
 },{passive:false});
 
+restartButton.addEventListener("click",(e)=>{
 
-
-restartButton.addEventListener("click",()=>{
+    e.preventDefault();
 
     restartGame();
 
 });
 
-
-
 gameLoop();
-
-
 
 function gameLoop(){
 
