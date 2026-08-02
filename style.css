@@ -1,0 +1,87 @@
+@font-face{
+
+    font-family:"SF Pro";
+    src:url("./SF-Pro.woff2") format("woff2");
+    font-weight:100 900;
+    font-style:normal;
+    font-display:swap;
+
+}
+
+:root{
+
+    --background:#000000;
+    --text:#FFFFFF;
+
+}
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:"SF Pro",sans-serif;
+    background:var(--background);
+    color:var(--text);
+
+    overflow-x:hidden;
+    overflow-y:hidden;
+
+    width:100vw;
+    height:100vh;
+
+    user-select:none;
+    -webkit-user-select:none;
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+img{
+
+    -webkit-user-drag:none;
+    user-drag:none;
+
+}
+
+button,
+input,
+textarea{
+
+    font-family:inherit;
+
+}
+
+#app{
+
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+
+}
+
+/* ===========================
+   TABLET
+=========================== */
+
+@media (max-width:1200px){
+
+}
+
+/* ===========================
+   MÓVIL
+=========================== */
+
+@media (max-width:900px){
+
+}
