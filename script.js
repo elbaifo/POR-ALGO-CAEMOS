@@ -8,6 +8,7 @@ const MENSAJES_CARGA = [
     "¡Todo listo!"
 ];
 
+
 document.addEventListener("DOMContentLoaded", iniciarAplicacion);
 
 
@@ -18,19 +19,31 @@ function iniciarAplicacion(){
     const loading = document.getElementById("loading-screen");
     const popup = document.getElementById("welcome-popup");
 
-    if(primeraVez){
 
-        mostrarPantallaCarga();
+    if(loading || popup){
 
-    }else{
+        if(primeraVez){
 
-        if(loading){
-            loading.style.display = "none";
+            mostrarPantallaCarga();
+
+        }else{
+
+            if(loading){
+                loading.style.display = "none";
+            }
+
+            if(popup){
+                popup.style.display = "none";
+            }
+
         }
 
-        if(popup){
-            popup.style.display = "none";
-        }
+    }
+
+
+    if(document.getElementById("profile-container")){
+
+        cargarPerfil();
 
     }
 
@@ -120,6 +133,7 @@ function actualizarMensajeCarga(texto){
 
     const mensaje = document.querySelector(".loading-text");
 
+
     if(mensaje){
 
         mensaje.textContent = texto;
@@ -130,10 +144,10 @@ function actualizarMensajeCarga(texto){
 
 
 
-
 function mostrarPopupBienvenida(){
 
     const popup = document.getElementById("welcome-popup");
+
 
     if(!popup) return;
 
@@ -175,7 +189,6 @@ function mostrarPopupBienvenida(){
 
 
 
-
 function crearPerfil(){
 
 
@@ -188,6 +201,7 @@ function crearPerfil(){
         skins:[],
         inventario:[],
         ajustes:{},
+        juegos:0,
         version:VERSION
 
     };
@@ -197,6 +211,155 @@ function crearPerfil(){
         "pas_profile",
         JSON.stringify(perfil)
     );
+
+
+}
+
+
+
+function cargarPerfil(){
+
+
+    const contenedor = document.getElementById("profile-container");
+
+
+    let perfil = JSON.parse(
+        localStorage.getItem("pas_profile")
+    );
+
+
+    if(!perfil){
+
+
+        return;
+
+
+    }
+
+
+
+    if(!perfil.nombre){
+
+
+        contenedor.innerHTML = `
+
+
+            <p>
+
+                Ingresa un nombre de usuario
+
+            </p>
+
+
+            <div class="profile-input">
+
+
+                <input 
+                id="username-input" 
+                type="text" 
+                placeholder="Nombre">
+
+
+                <button id="confirm-name">
+
+                    Confirmar
+
+                </button>
+
+
+            </div>
+
+
+        `;
+
+
+
+        document
+        .getElementById("confirm-name")
+        .addEventListener("click",()=>{
+
+
+            const nombre = document
+            .getElementById("username-input")
+            .value
+            .trim();
+
+
+
+            if(nombre.length > 0){
+
+
+                perfil.nombre = nombre;
+
+
+                localStorage.setItem(
+                    "pas_profile",
+                    JSON.stringify(perfil)
+                );
+
+
+                cargarPerfil();
+
+
+            }
+
+
+        });
+
+
+
+    }else{
+
+
+        contenedor.innerHTML = `
+
+
+            <p>
+
+                Usuario
+
+            </p>
+
+
+            <h2>
+
+                ${perfil.nombre}
+
+            </h2>
+
+
+            <p>
+
+                Puntos: ${perfil.puntos}
+
+            </p>
+
+
+            <p>
+
+                Monedas: ${perfil.monedas}
+
+            </p>
+
+
+            <p>
+
+                Logros: ${perfil.logros.length}
+
+            </p>
+
+
+            <p>
+
+                Juegos completados: ${perfil.juegos}
+
+            </p>
+
+
+        `;
+
+
+    }
 
 
 }
