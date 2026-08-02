@@ -33,7 +33,7 @@ body{
 
     font-family:"SF Pro",sans-serif;
 
-    background:#05070C;
+    background:#0A0505;
 
     color:white;
 
@@ -127,7 +127,7 @@ body{
 
 #score-container span{
 
-    color:#A8B3C2;
+    color:#C7B5B5;
 
     font-size:.95rem;
 
@@ -149,13 +149,17 @@ body{
 
     max-width:100%;
 
-    background:#0D1424;
+    background:#160808;
 
-    border:2px solid rgba(255,255,255,.08);
+    border:2px solid rgba(193,18,31,.35);
 
     border-radius:22px;
 
-    box-shadow:0 20px 60px rgba(0,0,0,.35);
+    box-shadow:
+
+    0 20px 60px rgba(0,0,0,.45),
+
+    0 0 25px rgba(193,18,31,.15);
 
 }
 
@@ -178,7 +182,7 @@ body{
 
     gap:18px;
 
-    background:rgba(5,7,12,.75);
+    background:rgba(10,5,5,.78);
 
     backdrop-filter:blur(10px);
 
@@ -194,7 +198,7 @@ body{
 #start-screen p,
 #game-over p{
 
-    color:#C9D2DD;
+    color:#C9BABA;
 
     line-height:1.7;
 
@@ -213,9 +217,15 @@ body{
 
     text-decoration:none;
 
+    border:none;
+
+    cursor:pointer;
+
     color:white;
 
-    background:#5B8CFF;
+    background:#C1121F;
+
+    font-family:"SF Pro",sans-serif;
 
     font-weight:700;
 
@@ -228,9 +238,62 @@ body{
 
     transform:translateY(-3px);
 
-    background:#79A2FF;
+    background:#E63946;
 
 }
+
+#best-score{
+
+    font-weight:700;
+
+    color:white;
+
+}
+
+#new-record{
+
+    margin-left:8px;
+
+    color:#FF304F;
+
+    font-weight:800;
+
+    text-shadow:
+
+    0 0 12px rgba(255,48,79,.9);
+
+    animation:newRecord .8s ease-in-out infinite alternate;
+
+}
+
+@keyframes newRecord{
+
+    from{
+
+        opacity:.65;
+
+        transform:scale(1);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1.08);
+
+    }
+
+}
+
+#total-points{
+
+    font-weight:700;
+
+    color:#FFD54A;
+
+}
+
 
 @media(max-width:900px){
 
@@ -268,57 +331,5 @@ body{
         font-size:2rem;
 
     }
-
-}
-
-
-
-#best-score{
-
-    font-weight:700;
-
-    color:white;
-
-}
-
-#new-record{
-
-    margin-left:8px;
-
-    color:#5B8CFF;
-
-    font-weight:800;
-
-    text-shadow:0 0 12px rgba(91,140,255,.9);
-
-    animation:newRecord .8s ease-in-out infinite alternate;
-
-}
-
-@keyframes newRecord{
-
-    from{
-
-        opacity:.65;
-
-        transform:scale(1);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:scale(1.08);
-
-    }
-
-}
-
-#total-points{
-
-    font-weight:700;
-
-    color:#FFD54A;
 
 }
