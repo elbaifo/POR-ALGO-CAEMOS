@@ -1,4 +1,4 @@
-const CACHE_NAME = "por-algo-creamos-v1";
+const CACHE_NAME = "por-algo-caemos-v2";
 
 const ARCHIVOS = [
     "./",
@@ -8,7 +8,6 @@ const ARCHIVOS = [
     "./manifest.json",
     "./favicon.png"
 ];
-
 
 self.addEventListener("install", event => {
 
@@ -24,8 +23,6 @@ self.addEventListener("install", event => {
     );
 
 });
-
-
 
 self.addEventListener("fetch", event => {
 
