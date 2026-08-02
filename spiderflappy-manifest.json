@@ -1,0 +1,17 @@
+{
+    "name": "POR ALGO CAEMOS: Spider-Flappy",
+    "short_name": "Spider-Flappy",
+    "description": "Un juego donde cada caída es una oportunidad para levantarse.",
+    "start_url": "spiderflappy.html",
+    "display": "standalone",
+    "background_color": "#160808",
+    "theme_color": "#C1121F",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "spider-art.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
