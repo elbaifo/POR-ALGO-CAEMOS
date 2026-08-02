@@ -270,3 +270,55 @@ body{
     }
 
 }
+
+
+
+#best-score{
+
+    font-weight:700;
+
+    color:white;
+
+}
+
+#new-record{
+
+    margin-left:8px;
+
+    color:#5B8CFF;
+
+    font-weight:800;
+
+    text-shadow:0 0 12px rgba(91,140,255,.9);
+
+    animation:newRecord .8s ease-in-out infinite alternate;
+
+}
+
+@keyframes newRecord{
+
+    from{
+
+        opacity:.65;
+
+        transform:scale(1);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1.08);
+
+    }
+
+}
+
+#total-points{
+
+    font-weight:700;
+
+    color:#FFD54A;
+
+}
