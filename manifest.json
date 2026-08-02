@@ -1,11 +1,11 @@
 {
-    "name": "POR ALGO CREAMOS",
-    "short_name": "POR ALGO CREAMOS",
-    "description": "Una pequeña aventura creada especialmente para ti.",
+    "name": "POR ALGO CAEMOS",
+    "short_name": "POR ALGO CAEMOS",
+    "description": "Cada caída es una oportunidad para volver a levantarse.",
     "start_url": "index.html",
     "display": "standalone",
-    "background_color": "#05070C",
-    "theme_color": "#05070C",
+    "background_color": "#0A0505",
+    "theme_color": "#0A0505",
     "orientation": "portrait",
     "icons": [
         {
