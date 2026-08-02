@@ -472,21 +472,17 @@ function endGame(){
 
 
 
-        profile.puntosTotales =
+        profile.puntos =
 
-        (profile.puntosTotales || 0)
+(profile.puntos || 0)
 
-        +
++
 
-        score;
-
-
-
-        totalPoints = profile.puntosTotales;
+score;
 
 
 
-        saveProfile(profile);
+totalPoints = profile.puntos;
 
 
     }
