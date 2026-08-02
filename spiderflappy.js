@@ -3,6 +3,7 @@ const ctx = canvas.getContext("2d");
 
 const startScreen = document.getElementById("start-screen");
 const gameOverScreen = document.getElementById("game-over");
+const restartButton = document.getElementById("restart-button");
 
 const player = {
 
@@ -23,10 +24,12 @@ const player = {
 
 let started = false;
 
+let gameRunning = false;
 
 let obstacles = [];
 
 let frame = 0;
+
 
 
 function drawBackground(){
@@ -129,7 +132,6 @@ function drawObstacles(){
 
 function updateObstacles(){
 
-
     obstacles.forEach((obstacle)=>{
 
         obstacle.x -= obstacle.speed;
@@ -153,6 +155,62 @@ function updateObstacles(){
 
     }
 
+}
+
+
+
+function checkCollision(){
+
+
+    if(player.y - player.radius <= 0){
+
+        endGame();
+
+    }
+
+
+    if(player.y + player.radius >= canvas.height){
+
+        endGame();
+
+    }
+
+
+
+    obstacles.forEach((obstacle)=>{
+
+
+        const hitX =
+
+        player.x + player.radius > obstacle.x &&
+
+        player.x - player.radius < obstacle.x + obstacle.width;
+
+
+
+        const hitTop =
+
+        player.y - player.radius < obstacle.top;
+
+
+
+        const hitBottom =
+
+        player.y + player.radius >
+
+        canvas.height - obstacle.bottom;
+
+
+
+        if(hitX && (hitTop || hitBottom)){
+
+            endGame();
+
+        }
+
+
+    });
+
 
 }
 
@@ -161,36 +219,9 @@ function updateObstacles(){
 function updatePlayer(){
 
 
-    if(!started){
-
-        return;
-
-    }
-
-
     player.velocity += player.gravity;
 
     player.y += player.velocity;
-
-
-
-    if(player.y < player.radius){
-
-        player.y = player.radius;
-
-        player.velocity = 0;
-
-    }
-
-
-
-    if(player.y > canvas.height-player.radius){
-
-        player.y = canvas.height-player.radius;
-
-        player.velocity = 0;
-
-    }
 
 
 }
@@ -200,7 +231,7 @@ function updatePlayer(){
 function update(){
 
 
-    if(!started){
+    if(!gameRunning){
 
         return;
 
@@ -210,6 +241,8 @@ function update(){
     updatePlayer();
 
     updateObstacles();
+
+    checkCollision();
 
 
 }
@@ -228,31 +261,57 @@ function render(){
 
 
 
-function gameLoop(){
-
-    update();
-
-    render();
-
-    requestAnimationFrame(gameLoop);
-
-}
-
-
-
 function startGame(){
 
 
-    if(!started){
+    if(!gameRunning){
 
         started = true;
 
+        gameRunning = true;
+
         startScreen.style.display="none";
+
+        gameOverScreen.style.display="none";
 
     }
 
 
     player.velocity = player.jump;
+
+
+}
+
+
+
+function endGame(){
+
+
+    gameRunning = false;
+
+    gameOverScreen.style.display="flex";
+
+
+}
+
+
+
+function restartGame(){
+
+
+    player.y = 300;
+
+    player.velocity = 0;
+
+    obstacles = [];
+
+    frame = 0;
+
+
+    gameOverScreen.style.display="none";
+
+
+    gameRunning = true;
 
 
 }
@@ -285,11 +344,9 @@ startScreen.addEventListener("click",()=>{
 
 startScreen.addEventListener("touchstart",(e)=>{
 
-
     e.preventDefault();
 
     startGame();
-
 
 },{passive:false});
 
@@ -297,9 +354,7 @@ startScreen.addEventListener("touchstart",(e)=>{
 
 canvas.addEventListener("click",()=>{
 
-
     startGame();
-
 
 });
 
@@ -307,14 +362,32 @@ canvas.addEventListener("click",()=>{
 
 canvas.addEventListener("touchstart",(e)=>{
 
-
     e.preventDefault();
 
     startGame();
-
 
 },{passive:false});
 
 
 
+restartButton.addEventListener("click",()=>{
+
+    restartGame();
+
+});
+
+
+
 gameLoop();
+
+
+
+function gameLoop(){
+
+    update();
+
+    render();
+
+    requestAnimationFrame(gameLoop);
+
+}
