@@ -367,46 +367,38 @@ function cargarPerfil(){
         contenedor.innerHTML = `
 
 
-            <p>
-
-                Usuario
-
-            </p>
-
-
-            <h2>
+            <h2 class="profile-name">
 
                 ${perfil.nombre}
 
             </h2>
 
 
-            <p>
-
-                Puntos: ${perfil.puntos}
-
-            </p>
+            <div class="profile-stats">
 
 
-            <p>
+                <p>
 
-                Monedas: ${perfil.monedas}
+                    Puntos: ${perfil.puntos}
 
-            </p>
-
-
-            <p>
-
-                Logros: ${perfil.logros.length}
-
-            </p>
+                </p>
 
 
-            <p>
+                <p>
 
-                Juegos completados: ${perfil.juegos}
+                    Monedas: ${perfil.monedas}
 
-            </p>
+                </p>
+
+
+                <p>
+
+                    Skins: 0/0
+
+                </p>
+
+
+            </div>
 
 
         `;
