@@ -939,3 +939,91 @@ body.page-exit{
     transform:translateY(-3px);
 
 }
+
+
+#loading-screen{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:30px;
+
+    background:var(--background);
+
+    color:white;
+
+    z-index:2000;
+
+}
+
+
+#loading-screen h1{
+
+    font-size:3rem;
+
+    font-weight:800;
+
+    letter-spacing:8px;
+
+    text-align:center;
+
+}
+
+
+.loading-bar{
+
+    width:280px;
+
+    height:8px;
+
+    background:rgba(255,255,255,.1);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+
+.loading-progress{
+
+    width:0%;
+
+    height:100%;
+
+    background:var(--primary);
+
+    border-radius:20px;
+
+    transition:.2s ease;
+
+}
+
+
+@media(max-width:600px){
+
+    #loading-screen h1{
+
+        font-size:2rem;
+
+        letter-spacing:4px;
+
+    }
+
+
+    .loading-bar{
+
+        width:220px;
+
+    }
+
+}
