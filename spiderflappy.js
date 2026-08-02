@@ -24,18 +24,6 @@ const player = {
 
 let started = false;
 
-function drawPlayer(){
-
-    ctx.font = "40px Arial";
-
-    ctx.textAlign = "center";
-
-    ctx.textBaseline = "middle";
-
-    ctx.fillText("🕷️",player.x,player.y);
-
-}
-
 function drawBackground(){
 
     ctx.fillStyle="#0D1424";
@@ -44,15 +32,29 @@ function drawBackground(){
 
 }
 
+function drawPlayer(){
+
+    ctx.font="40px Arial";
+
+    ctx.textAlign="center";
+
+    ctx.textBaseline="middle";
+
+    ctx.fillText("🕷️",player.x,player.y);
+
+}
+
 function update(){
 
-    if(started){
+    if(!started){
 
-        player.velocity += player.gravity;
-
-        player.y += player.velocity;
+        return;
 
     }
+
+    player.velocity += player.gravity;
+
+    player.y += player.velocity;
 
     if(player.y < player.radius){
 
@@ -80,17 +82,17 @@ function render(){
 
 }
 
-function loop(){
+function gameLoop(){
 
     update();
 
     render();
 
-    requestAnimationFrame(loop);
+    requestAnimationFrame(gameLoop);
 
 }
 
-function jump(){
+function startGame(){
 
     if(!started){
 
@@ -110,20 +112,24 @@ document.addEventListener("keydown",(e)=>{
 
         e.preventDefault();
 
-        jump();
+        startGame();
 
     }
 
 });
 
-canvas.addEventListener("click",jump);
+document.addEventListener("click",()=>{
 
-canvas.addEventListener("touchstart",(e)=>{
-
-    e.preventDefault();
-
-    jump();
+    startGame();
 
 });
 
-loop();
+document.addEventListener("touchstart",(e)=>{
+
+    e.preventDefault();
+
+    startGame();
+
+},{passive:false});
+
+gameLoop();
