@@ -4,8 +4,6 @@ const ctx = canvas.getContext("2d");
 const startScreen = document.getElementById("start-screen");
 const gameOverScreen = document.getElementById("game-over");
 
-const scoreElement = document.getElementById("score");
-
 const player = {
 
     x:80,
@@ -22,7 +20,14 @@ const player = {
 
 };
 
+
 let started = false;
+
+
+let obstacles = [];
+
+let frame = 0;
+
 
 function drawBackground(){
 
@@ -31,6 +36,8 @@ function drawBackground(){
     ctx.fillRect(0,0,canvas.width,canvas.height);
 
 }
+
+
 
 function drawPlayer(){
 
@@ -44,7 +51,115 @@ function drawPlayer(){
 
 }
 
-function update(){
+
+
+function createObstacle(){
+
+    const gap = 180;
+
+    const minHeight = 80;
+
+    const maxHeight = canvas.height - gap - minHeight;
+
+
+    const topHeight = Math.floor(
+
+        Math.random() * (maxHeight - minHeight) + minHeight
+
+    );
+
+
+    obstacles.push({
+
+        x:canvas.width,
+
+        width:70,
+
+        top:topHeight,
+
+        bottom:canvas.height - topHeight - gap,
+
+        speed:3
+
+    });
+
+}
+
+
+
+function drawObstacles(){
+
+    ctx.fillStyle="#5B8CFF";
+
+
+    obstacles.forEach((obstacle)=>{
+
+
+        ctx.fillRect(
+
+            obstacle.x,
+
+            0,
+
+            obstacle.width,
+
+            obstacle.top
+
+        );
+
+
+        ctx.fillRect(
+
+            obstacle.x,
+
+            canvas.height - obstacle.bottom,
+
+            obstacle.width,
+
+            obstacle.bottom
+
+        );
+
+
+    });
+
+}
+
+
+
+function updateObstacles(){
+
+
+    obstacles.forEach((obstacle)=>{
+
+        obstacle.x -= obstacle.speed;
+
+    });
+
+
+    obstacles = obstacles.filter((obstacle)=>{
+
+        return obstacle.x + obstacle.width > 0;
+
+    });
+
+
+    frame++;
+
+
+    if(frame % 120 === 0){
+
+        createObstacle();
+
+    }
+
+
+}
+
+
+
+function updatePlayer(){
+
 
     if(!started){
 
@@ -52,9 +167,12 @@ function update(){
 
     }
 
+
     player.velocity += player.gravity;
 
     player.y += player.velocity;
+
+
 
     if(player.y < player.radius){
 
@@ -64,6 +182,8 @@ function update(){
 
     }
 
+
+
     if(player.y > canvas.height-player.radius){
 
         player.y = canvas.height-player.radius;
@@ -72,15 +192,41 @@ function update(){
 
     }
 
+
 }
+
+
+
+function update(){
+
+
+    if(!started){
+
+        return;
+
+    }
+
+
+    updatePlayer();
+
+    updateObstacles();
+
+
+}
+
+
 
 function render(){
 
     drawBackground();
 
+    drawObstacles();
+
     drawPlayer();
 
 }
+
+
 
 function gameLoop(){
 
@@ -92,21 +238,29 @@ function gameLoop(){
 
 }
 
+
+
 function startGame(){
+
 
     if(!started){
 
         started = true;
 
-        startScreen.style.display = "none";
+        startScreen.style.display="none";
 
     }
 
+
     player.velocity = player.jump;
+
 
 }
 
+
+
 document.addEventListener("keydown",(e)=>{
+
 
     if(e.code==="Space"){
 
@@ -116,7 +270,10 @@ document.addEventListener("keydown",(e)=>{
 
     }
 
+
 });
+
+
 
 startScreen.addEventListener("click",()=>{
 
@@ -124,26 +281,40 @@ startScreen.addEventListener("click",()=>{
 
 });
 
+
+
 startScreen.addEventListener("touchstart",(e)=>{
+
 
     e.preventDefault();
 
     startGame();
 
+
 },{passive:false});
+
+
 
 canvas.addEventListener("click",()=>{
 
+
     startGame();
+
 
 });
 
+
+
 canvas.addEventListener("touchstart",(e)=>{
+
 
     e.preventDefault();
 
     startGame();
 
+
 },{passive:false});
+
+
 
 gameLoop();
