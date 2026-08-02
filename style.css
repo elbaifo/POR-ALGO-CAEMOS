@@ -60,7 +60,6 @@ body{
 
 }
 
-}
 
 body::before{
 
@@ -107,7 +106,6 @@ body::before{
 
 }
 
-}
 
 .home-content{
 
@@ -124,8 +122,6 @@ body::before{
     align-items:center;
 
     padding:40px;
-
-}
 
 }
 
