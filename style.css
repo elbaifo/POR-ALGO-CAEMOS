@@ -74,11 +74,8 @@ body::before{
     inset:0;
 
     background:
-
     radial-gradient(circle at center,
-
     rgba(91,140,255,.15),
-
     transparent 45%);
 
     z-index:-1;
@@ -93,7 +90,6 @@ body::before{
     height:100vh;
 
 }
-
 
 
 .home-container{
@@ -115,7 +111,6 @@ body::before{
 }
 
 
-
 .home-content{
 
     width:100%;
@@ -135,7 +130,6 @@ body::before{
 }
 
 
-
 .home-content h1{
 
     font-size:4rem;
@@ -147,7 +141,6 @@ body::before{
     margin-bottom:15px;
 
 }
-
 
 
 .home-content p{
@@ -164,8 +157,6 @@ body::before{
 
 }
 
-
-/* MENU */
 
 .side-menu{
 
@@ -202,7 +193,6 @@ body::before{
 }
 
 
-
 .side-menu a{
 
     text-decoration:none;
@@ -224,7 +214,6 @@ body::before{
 }
 
 
-
 .side-menu a:hover{
 
     color:white;
@@ -234,7 +223,6 @@ body::before{
     transform:translateX(-5px);
 
 }
-
 
 
 .side-menu a.active{
@@ -247,9 +235,6 @@ body::before{
 
 }
 
-
-
-/* PERFIL */
 
 #profile-container{
 
@@ -268,7 +253,6 @@ body::before{
 }
 
 
-
 .profile-name{
 
     margin-bottom:35px;
@@ -278,7 +262,6 @@ body::before{
     letter-spacing:3px;
 
 }
-
 
 
 .profile-stats{
@@ -305,8 +288,6 @@ body::before{
 
 }
 
-
-
 .profile-stats p{
 
     color:var(--text-secondary);
@@ -314,7 +295,6 @@ body::before{
     font-size:1.1rem;
 
 }
-
 
 
 .profile-input{
@@ -330,7 +310,6 @@ body::before{
     margin-top:25px;
 
 }
-
 
 
 .profile-input input{
@@ -354,7 +333,6 @@ body::before{
     outline:none;
 
 }
-
 
 
 .profile-input button{
@@ -382,7 +360,6 @@ body::before{
 }
 
 
-
 .profile-input button:hover{
 
     background:rgba(91,140,255,.3);
@@ -390,7 +367,6 @@ body::before{
     transform:translateY(-3px);
 
 }
-
 
 
 /* ANIMACIONES GENERALES */
@@ -401,7 +377,6 @@ body::before{
     animation:pageEnter .6s ease forwards;
 
 }
-
 
 
 .fade-item{
@@ -415,13 +390,11 @@ body::before{
 }
 
 
-
 .fade-item:nth-child(1){
 
     animation-delay:.1s;
 
 }
-
 
 
 .fade-item:nth-child(2){
@@ -431,7 +404,6 @@ body::before{
 }
 
 
-
 .fade-item:nth-child(3){
 
     animation-delay:.3s;
@@ -439,13 +411,13 @@ body::before{
 }
 
 
+/* CAMBIO IMPORTANTE */
 
-.page-exit{
+body.page-exit{
 
-    animation:pageExit .4s ease forwards;
+    animation:pageExit .35s ease forwards;
 
 }
-
 
 
 @keyframes pageEnter{
@@ -458,7 +430,6 @@ body::before{
 
     }
 
-
     to{
 
         opacity:1;
@@ -468,7 +439,6 @@ body::before{
     }
 
 }
-
 
 
 @keyframes itemEnter{
@@ -481,7 +451,6 @@ body::before{
 
     }
 
-
     to{
 
         opacity:1;
@@ -493,6 +462,7 @@ body::before{
 }
 
 
+/* CAMBIO IMPORTANTE */
 
 @keyframes pageExit{
 
@@ -500,20 +470,23 @@ body::before{
 
         opacity:1;
 
-    }
+        transform:translateY(0);
 
+        filter:blur(0);
+
+    }
 
     to{
 
         opacity:0;
 
-        transform:translateY(-20px);
+        transform:translateY(-12px);
+
+        filter:blur(3px);
 
     }
 
 }
-
-
 
 @keyframes menuEnter{
 
@@ -524,7 +497,6 @@ body::before{
         transform:translate(80px,-50%);
 
     }
-
 
     to{
 
@@ -542,13 +514,11 @@ body::before{
 
 @media(max-width:1200px){
 
-
     .home-content h1{
 
         font-size:3.2rem;
 
     }
-
 
     .side-menu{
 
@@ -566,13 +536,11 @@ body::before{
 
 @media(max-width:900px){
 
-
     body{
 
         overflow:auto;
 
     }
-
 
     .home-container{
 
@@ -584,7 +552,6 @@ body::before{
 
     }
 
-
     .home-content{
 
         padding:20px;
@@ -592,7 +559,6 @@ body::before{
         margin-bottom:30px;
 
     }
-
 
     .home-content h1{
 
@@ -602,7 +568,6 @@ body::before{
 
     }
 
-
     .home-content p{
 
         font-size:.95rem;
@@ -610,7 +575,6 @@ body::before{
         line-height:1.7;
 
     }
-
 
     .side-menu{
 
@@ -628,7 +592,6 @@ body::before{
 
     }
 
-
     .side-menu a{
 
         text-align:center;
@@ -637,7 +600,6 @@ body::before{
 
     }
 
-
     .profile-input{
 
         flex-direction:column;
@@ -645,7 +607,6 @@ body::before{
         width:100%;
 
     }
-
 
     .profile-input input{
 
