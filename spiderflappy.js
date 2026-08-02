@@ -14,7 +14,7 @@ const totalPointsElement = document.getElementById("total-points");
 const newRecordElement = document.getElementById("new-record");
 
 
-const PROFILE_KEY = "pac_profile";
+const PROFILE_KEY = "pas_profile";
 
 
 function getProfile(){
@@ -59,9 +59,14 @@ let totalPoints = 0;
 
 if(profile){
 
-    totalPoints = profile.puntosTotales || 0;
+    totalPoints = profile.puntos || 0;
 
 }
+
+
+bestScoreElement.textContent = bestScore;
+
+totalPointsElement.textContent = totalPoints;
 
 
 bestScoreElement.textContent = bestScore;
