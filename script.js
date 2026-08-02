@@ -24,6 +24,7 @@ document.addEventListener(
 
 );
 
+
 function iniciarAplicacion(){
 
     const primeraVez = !localStorage.getItem(STORAGE_KEY);
@@ -31,6 +32,7 @@ function iniciarAplicacion(){
     const loading = document.getElementById("loading-screen");
 
     const popup = document.getElementById("welcome-popup");
+
 
     if(loading || popup){
 
@@ -56,11 +58,13 @@ function iniciarAplicacion(){
 
     }
 
+
     if(document.getElementById("profile-container")){
 
         cargarPerfil();
 
     }
+
 
     activarTransiciones();
 
@@ -68,9 +72,12 @@ function iniciarAplicacion(){
 
 }
 
+
+
 function mostrarPantallaCarga(){
 
     const loading = document.getElementById("loading-screen");
+
 
     if(!loading){
 
@@ -78,15 +85,20 @@ function mostrarPantallaCarga(){
 
     }
 
+
     const barra = loading.querySelector(".loading-progress");
 
     let progreso = 0;
 
+
     actualizarMensajeCarga(MENSAJES_CARGA[0]);
+
 
     const intervalo = setInterval(()=>{
 
+
         progreso++;
+
 
         if(barra){
 
@@ -94,11 +106,13 @@ function mostrarPantallaCarga(){
 
         }
 
+
         if(progreso===20){
 
             actualizarMensajeCarga(MENSAJES_CARGA[1]);
 
         }
+
 
         if(progreso===45){
 
@@ -106,11 +120,13 @@ function mostrarPantallaCarga(){
 
         }
 
+
         if(progreso===70){
 
             actualizarMensajeCarga(MENSAJES_CARGA[3]);
 
         }
+
 
         if(progreso===95){
 
@@ -118,33 +134,44 @@ function mostrarPantallaCarga(){
 
         }
 
+
         if(progreso>=100){
 
             clearInterval(intervalo);
 
+
             setTimeout(()=>{
+
 
                 loading.style.opacity="0";
 
+
                 setTimeout(()=>{
+
 
                     loading.style.display="none";
 
                     mostrarPopupBienvenida();
 
+
                 },500);
+
 
             },500);
 
         }
 
+
     },70);
 
 }
 
+
+
 function actualizarMensajeCarga(texto){
 
     const mensaje = document.querySelector(".loading-text");
+
 
     if(mensaje){
 
@@ -154,9 +181,12 @@ function actualizarMensajeCarga(texto){
 
 }
 
+
+
 function mostrarPopupBienvenida(){
 
     const popup = document.getElementById("welcome-popup");
+
 
     if(!popup){
 
@@ -164,29 +194,40 @@ function mostrarPopupBienvenida(){
 
     }
 
+
     popup.style.display="flex";
 
+
     const boton = document.getElementById("enter-button");
+
 
     if(boton){
 
         boton.onclick=()=>{
 
+
             crearPerfil();
+
 
             popup.style.opacity="0";
 
+
             setTimeout(()=>{
+
 
                 popup.style.display="none";
 
+
             },500);
+
 
         };
 
     }
 
 }
+
+
 
 function crearPerfil(){
 
@@ -216,6 +257,7 @@ function crearPerfil(){
 
     };
 
+
     localStorage.setItem(
 
         STORAGE_KEY,
@@ -227,9 +269,11 @@ function crearPerfil(){
 }
 
 
+
 function cargarPerfil(){
 
     const contenedor = document.getElementById("profile-container");
+
 
     const perfil = JSON.parse(
 
@@ -237,13 +281,17 @@ function cargarPerfil(){
 
     );
 
+
     if(!contenedor || !perfil){
 
         return;
 
     }
 
+
+
     if(!perfil.nombre){
+
 
         contenedor.innerHTML = `
 
@@ -256,10 +304,15 @@ function cargarPerfil(){
             <div class="profile-input">
 
                 <input
+
                 id="username-input"
+
                 type="text"
+
                 maxlength="20"
+
                 placeholder="Nombre">
+
 
                 <button id="confirm-name">
 
@@ -271,11 +324,14 @@ function cargarPerfil(){
 
         `;
 
+
+
         document
 
         .getElementById("confirm-name")
 
         .addEventListener("click",()=>{
+
 
             const nombre = document
 
@@ -285,9 +341,13 @@ function cargarPerfil(){
 
             .trim();
 
+
+
             if(nombre.length>0){
 
+
                 perfil.nombre = nombre;
+
 
                 localStorage.setItem(
 
@@ -297,15 +357,20 @@ function cargarPerfil(){
 
                 );
 
+
                 cargarPerfil();
 
             }
 
+
         });
+
 
         return;
 
     }
+
+
 
     contenedor.innerHTML = `
 
@@ -315,7 +380,9 @@ function cargarPerfil(){
 
         </h2>
 
+
         <div class="profile-stats">
+
 
             <p>
 
@@ -323,11 +390,13 @@ function cargarPerfil(){
 
             </p>
 
+
             <p>
 
                 Monedas: ${perfil.monedas}
 
             </p>
+
 
             <p>
 
@@ -335,11 +404,13 @@ function cargarPerfil(){
 
             </p>
 
+
             <p>
 
                 Puntos totales: ${perfil.puntosTotales}
 
             </p>
+
 
             <p>
 
@@ -347,17 +418,21 @@ function cargarPerfil(){
 
             </p>
 
+
             <p>
 
                 Skins: ${perfil.skinsCompradas.length}
 
             </p>
 
+
         </div>
 
     `;
 
 }
+
+
 
 function activarTransiciones(){
 
@@ -367,7 +442,9 @@ function activarTransiciones(){
 
     .forEach((enlace)=>{
 
+
         const destino = enlace.getAttribute("href");
+
 
         if(
 
@@ -385,23 +462,36 @@ function activarTransiciones(){
 
         }
 
+
+
         enlace.addEventListener("click",(e)=>{
+
 
             e.preventDefault();
 
+
+
             document.body.classList.add("page-exit");
+
+
 
             setTimeout(()=>{
 
+
                 window.location.href = destino;
+
+
 
             },350);
 
+
         });
+
 
     });
 
 }
+
 
 
 function obtenerPerfil(){
@@ -414,6 +504,8 @@ function obtenerPerfil(){
 
 }
 
+
+
 function guardarPerfil(perfil){
 
     localStorage.setItem(
@@ -425,6 +517,8 @@ function guardarPerfil(perfil){
     );
 
 }
+
+
 
 function registrarServiceWorker(){
 
@@ -441,8 +535,31 @@ function registrarServiceWorker(){
 }
 
 
-window.addEventListener("pageshow",()=>{
+
+window.addEventListener("pageshow",(event)=>{
+
 
     document.body.classList.remove("page-exit");
+
+
+
+    if(event.persisted){
+
+
+        document.body.style.animation="none";
+
+
+
+        setTimeout(()=>{
+
+
+            document.body.style.animation="pageEnter .7s ease forwards";
+
+
+        },10);
+
+
+    }
+
 
 });
