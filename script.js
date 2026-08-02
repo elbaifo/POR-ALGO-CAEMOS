@@ -12,6 +12,7 @@ const MENSAJES_CARGA = [
 document.addEventListener("DOMContentLoaded", iniciarAplicacion);
 
 
+
 function iniciarAplicacion(){
 
     const primeraVez = !localStorage.getItem("pas_profile");
@@ -28,12 +29,18 @@ function iniciarAplicacion(){
 
         }else{
 
+
             if(loading){
+
                 loading.style.display = "none";
+
             }
 
+
             if(popup){
+
                 popup.style.display = "none";
+
             }
 
         }
@@ -77,19 +84,30 @@ function mostrarPantallaCarga(){
 
 
         if(progreso === 20){
+
             actualizarMensajeCarga(MENSAJES_CARGA[1]);
+
         }
+
 
         if(progreso === 45){
+
             actualizarMensajeCarga(MENSAJES_CARGA[2]);
+
         }
+
 
         if(progreso === 70){
+
             actualizarMensajeCarga(MENSAJES_CARGA[3]);
+
         }
 
+
         if(progreso === 95){
+
             actualizarMensajeCarga(MENSAJES_CARGA[4]);
+
         }
 
 
@@ -189,31 +207,46 @@ function mostrarPopupBienvenida(){
 
 
 
+
 function crearPerfil(){
 
 
     const perfil = {
 
+
         nombre:"",
+
         puntos:0,
+
         monedas:0,
+
         logros:[],
+
         skins:[],
+
         inventario:[],
+
         ajustes:{},
+
         juegos:0,
+
         version:VERSION
+
 
     };
 
 
     localStorage.setItem(
+
         "pas_profile",
+
         JSON.stringify(perfil)
+
     );
 
 
 }
+
 
 
 
@@ -223,22 +256,24 @@ function cargarPerfil(){
     const contenedor = document.getElementById("profile-container");
 
 
-    let perfil = JSON.parse(
+    const perfil = JSON.parse(
+
         localStorage.getItem("pas_profile")
+
     );
 
 
     if(!perfil){
 
-
         return;
-
 
     }
 
 
 
+
     if(!perfil.nombre){
+
 
 
         contenedor.innerHTML = `
@@ -254,9 +289,12 @@ function cargarPerfil(){
             <div class="profile-input">
 
 
-                <input 
-                id="username-input" 
-                type="text" 
+                <input
+
+                id="username-input"
+
+                type="text"
+
                 placeholder="Nombre">
 
 
@@ -274,15 +312,22 @@ function cargarPerfil(){
 
 
 
+
         document
+
         .getElementById("confirm-name")
+
         .addEventListener("click",()=>{
 
 
             const nombre = document
+
             .getElementById("username-input")
+
             .value
+
             .trim();
+
 
 
 
@@ -292,10 +337,15 @@ function cargarPerfil(){
                 perfil.nombre = nombre;
 
 
+
                 localStorage.setItem(
+
                     "pas_profile",
+
                     JSON.stringify(perfil)
+
                 );
+
 
 
                 cargarPerfil();
@@ -304,11 +354,14 @@ function cargarPerfil(){
             }
 
 
+
         });
 
 
 
+
     }else{
+
 
 
         contenedor.innerHTML = `
@@ -360,6 +413,17 @@ function cargarPerfil(){
 
 
     }
+
+
+}
+
+
+
+
+if("serviceWorker" in navigator){
+
+
+    navigator.serviceWorker.register("service-worker.js");
 
 
 }
