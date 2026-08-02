@@ -34,7 +34,6 @@
 }
 
 
-
 *{
 
     margin:0;
@@ -46,13 +45,11 @@
 }
 
 
-
 html{
 
     scroll-behavior:smooth;
 
 }
-
 
 
 body{
@@ -68,7 +65,6 @@ body{
 }
 
 
-
 body::before{
 
     content:"";
@@ -81,14 +77,13 @@ body::before{
 
     radial-gradient(circle at center,
 
-    rgba(91,140,blue,.15),
+    rgba(91,140,255,.15),
 
     transparent 45%);
 
     z-index:-1;
 
 }
-
 
 
 #app{
@@ -98,7 +93,6 @@ body::before{
     height:100vh;
 
 }
-
 
 
 .home-container{
@@ -120,7 +114,6 @@ body::before{
 }
 
 
-
 .home-content{
 
     width:100%;
@@ -140,7 +133,6 @@ body::before{
 }
 
 
-
 .home-content h1{
 
     font-size:4rem;
@@ -152,7 +144,6 @@ body::before{
     margin-bottom:15px;
 
 }
-
 
 
 .home-content p{
@@ -168,7 +159,6 @@ body::before{
     margin-bottom:25px;
 
 }
-
 
 
 /* MENU */
@@ -208,7 +198,6 @@ body::before{
 }
 
 
-
 .side-menu a{
 
     text-decoration:none;
@@ -230,7 +219,6 @@ body::before{
 }
 
 
-
 .side-menu a:hover{
 
     color:white;
@@ -238,7 +226,6 @@ body::before{
     background:rgba(255,255,255,.05);
 
 }
-
 
 
 .side-menu a.active{
@@ -252,8 +239,24 @@ body::before{
 }
 
 
-
 /* PERFIL */
+
+#profile-container{
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+}
+
 
 .profile-name{
 
@@ -264,7 +267,6 @@ body::before{
     letter-spacing:3px;
 
 }
-
 
 
 .profile-stats{
@@ -292,7 +294,6 @@ body::before{
 }
 
 
-
 .profile-stats p{
 
     color:var(--text-secondary);
@@ -300,7 +301,6 @@ body::before{
     font-size:1.1rem;
 
 }
-
 
 
 .profile-input{
@@ -316,7 +316,6 @@ body::before{
     margin-top:25px;
 
 }
-
 
 
 .profile-input input{
@@ -344,7 +343,6 @@ body::before{
 }
 
 
-
 .profile-input input::placeholder{
 
     color:var(--text-secondary);
@@ -352,13 +350,13 @@ body::before{
 }
 
 
-
 .profile-input input:focus{
 
     border-color:var(--primary);
 
-}
+    box-shadow:0 0 20px rgba(91,140,255,.25);
 
+}
 
 
 .profile-input button{
@@ -384,13 +382,11 @@ body::before{
 }
 
 
-
 .profile-input button:hover{
 
     background:rgba(91,140,255,.3);
 
 }
-
 
 
 /* ANIMACIONES */
@@ -410,7 +406,6 @@ body::before{
     }
 
 }
-
 
 
 @keyframes menuEnter{
@@ -434,7 +429,6 @@ body::before{
 }
 
 
-
 /* TABLET */
 
 @media(max-width:1200px){
@@ -455,9 +449,7 @@ body::before{
 
     }
 
-
 }
-
 
 
 /* MOVIL */
@@ -552,6 +544,5 @@ body::before{
         max-width:280px;
 
     }
-
 
 }
