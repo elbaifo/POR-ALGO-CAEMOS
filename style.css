@@ -542,6 +542,7 @@ body.page-exit{
 
     }
 
+
     .home-container{
 
         min-height:100vh;
@@ -550,7 +551,10 @@ body.page-exit{
 
         padding:40px 20px;
 
+        justify-content:flex-start;
+
     }
+
 
     .home-content{
 
@@ -560,6 +564,7 @@ body.page-exit{
 
     }
 
+
     .home-content h1{
 
         font-size:2.2rem;
@@ -568,6 +573,7 @@ body.page-exit{
 
     }
 
+
     .home-content p{
 
         font-size:.95rem;
@@ -575,6 +581,7 @@ body.page-exit{
         line-height:1.7;
 
     }
+
 
     .side-menu{
 
@@ -592,6 +599,7 @@ body.page-exit{
 
     }
 
+
     .side-menu a{
 
         text-align:center;
@@ -599,6 +607,7 @@ body.page-exit{
         padding:13px;
 
     }
+
 
     .profile-input{
 
@@ -608,11 +617,60 @@ body.page-exit{
 
     }
 
+
     .profile-input input{
 
         width:100%;
 
         max-width:280px;
+
+    }
+
+
+    .games-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+        gap:18px;
+
+    }
+
+
+    .game-card{
+
+        min-height:270px;
+
+        padding:20px;
+
+    }
+
+
+    .game-icon{
+
+        font-size:2.8rem;
+
+    }
+
+
+    .game-icon img{
+
+        width:70px;
+
+        height:70px;
+
+    }
+
+
+    .game-card h2{
+
+        font-size:1.1rem;
+
+    }
+
+
+    .game-card p{
+
+        font-size:.9rem;
 
     }
 
