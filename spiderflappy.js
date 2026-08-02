@@ -3,10 +3,21 @@ const ctx = canvas.getContext("2d");
 
 const startScreen = document.getElementById("start-screen");
 const gameOverScreen = document.getElementById("game-over");
+
 const restartButton = document.getElementById("restart-button");
 
 const scoreElement = document.getElementById("score");
 const finalScore = document.getElementById("final-score");
+
+const bestScoreElement = document.getElementById("best-score");
+const totalPointsElement = document.getElementById("total-points");
+const newRecordElement = document.getElementById("new-record");
+
+let bestScore = Number(localStorage.getItem("spiderflappyBestScore")) || 0;
+let totalPoints = Number(localStorage.getItem("spiderflappyTotalPoints")) || 0;
+
+bestScoreElement.textContent = bestScore;
+totalPointsElement.textContent = totalPoints;
 
 const player={
 
@@ -255,6 +266,38 @@ function endGame(){
 
     finalScore.textContent=score;
 
+    newRecordElement.style.display="none";
+
+    if(score>bestScore){
+
+        bestScore=score;
+
+        localStorage.setItem(
+
+            "spiderflappyBestScore",
+
+            bestScore
+
+        );
+
+        bestScoreElement.textContent=bestScore;
+
+        newRecordElement.style.display="inline";
+
+    }
+
+    totalPoints+=score;
+
+    localStorage.setItem(
+
+        "spiderflappyTotalPoints",
+
+        totalPoints
+
+    );
+
+    totalPointsElement.textContent=totalPoints;
+
     gameOverScreen.style.display="flex";
 
 }
@@ -275,11 +318,14 @@ function restartGame(){
 
     finalScore.textContent=0;
 
+    newRecordElement.style.display="none";
+
     gameOverScreen.style.display="none";
 
     gameRunning=true;
 
 }
+
 
 document.addEventListener("keydown",(e)=>{
 
@@ -321,9 +367,7 @@ canvas.addEventListener("touchstart",(e)=>{
 
 },{passive:false});
 
-restartButton.addEventListener("click",(e)=>{
-
-    e.preventDefault();
+restartButton.addEventListener("click",()=>{
 
     restartGame();
 
