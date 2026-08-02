@@ -439,3 +439,10 @@ function registrarServiceWorker(){
     }
 
 }
+
+
+window.addEventListener("pageshow",()=>{
+
+    document.body.classList.remove("page-exit");
+
+});
