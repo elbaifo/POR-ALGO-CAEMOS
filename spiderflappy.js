@@ -118,13 +118,27 @@ document.addEventListener("keydown",(e)=>{
 
 });
 
-document.addEventListener("click",()=>{
+startScreen.addEventListener("click",()=>{
 
     startGame();
 
 });
 
-document.addEventListener("touchstart",(e)=>{
+startScreen.addEventListener("touchstart",(e)=>{
+
+    e.preventDefault();
+
+    startGame();
+
+},{passive:false});
+
+canvas.addEventListener("click",()=>{
+
+    startGame();
+
+});
+
+canvas.addEventListener("touchstart",(e)=>{
 
     e.preventDefault();
 
