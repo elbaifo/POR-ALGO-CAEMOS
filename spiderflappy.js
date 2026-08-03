@@ -14,6 +14,7 @@ const newRecordElement = document.getElementById("new-record");
 
 const PROFILE_KEY = "pac_profile";
 
+
 function getProfile(){
 
     return JSON.parse(
@@ -21,6 +22,7 @@ function getProfile(){
     ) || null;
 
 }
+
 
 function saveProfile(profile){
 
@@ -31,49 +33,88 @@ function saveProfile(profile){
 
 }
 
+
 let profile = getProfile();
+
+
+// =========================
+// SPRITES
+// =========================
 
 const spiderSubida = new Image();
 spiderSubida.src = "spidersubida.png";
 
+
 const spiderMedio = new Image();
 spiderMedio.src = "spidermedio.png";
+
 
 const spiderCaida = new Image();
 spiderCaida.src = "spidercaida.png";
 
+
+// =========================
+// EDIFICIOS
+// =========================
+
+const edificioNoche = new Image();
+edificioNoche.src = "edificio_noche.png";
+
+
+
 let bestScore = 0;
 let totalPoints = 0;
+
 
 if(profile){
 
     bestScore = profile.spiderFlappyRecord || 0;
+
     totalPoints = profile.puntosTotales || 0;
 
 }
 
+
 bestScoreElement.textContent = bestScore;
+
 totalPointsElement.textContent = totalPoints;
 
-const player={
+
+
+const player = {
 
     x:80,
+
     y:300,
+
     radius:22,
+
     velocity:0,
+
     gravity:0.45,
+
     jump:-8
 
 };
 
+
+
 let started=false;
+
 let gameRunning=false;
+
 let gameEnded=false;
+
+
 
 let obstacles=[];
 
+
 let frame=0;
+
 let score=0;
+
+
 
 function drawBackground(){
 
@@ -82,55 +123,71 @@ function drawBackground(){
     ctx.fillRect(
 
         0,
+
         0,
+
         canvas.width,
+
         canvas.height
 
     );
 
 }
 
+
+
 function drawPlayer(){
 
     let sprite = spiderMedio;
+
 
     if(player.velocity < -2){
 
         sprite = spiderSubida;
 
-    }else if(player.velocity > 2){
+    }
+
+    else if(player.velocity > 2){
 
         sprite = spiderCaida;
 
     }
 
+
     const size = 64;
+
 
     ctx.drawImage(
 
         sprite,
+
         player.x - size / 2,
+
         player.y - size / 2,
+
         size,
+
         size
 
     );
 
 }
 
+
 function createObstacle(){
 
-    const gap=180;
+    const gap = 180;
 
-    const minHeight=80;
+    const minHeight = 80;
 
-    const maxHeight=canvas.height-gap-minHeight;
+    const maxHeight = canvas.height - gap - minHeight;
 
-    const topHeight=Math.floor(
 
-        Math.random()*
+    const topHeight = Math.floor(
 
-        (maxHeight-minHeight)
+        Math.random() *
+
+        (maxHeight - minHeight)
 
         +
 
@@ -138,80 +195,158 @@ function createObstacle(){
 
     );
 
+
     obstacles.push({
 
         x:canvas.width,
+
         width:70,
+
         top:topHeight,
+
         bottom:canvas.height-topHeight-gap,
+
         speed:3,
+
         passed:false
 
     });
 
 }
 
-function drawObstacles(){
 
-    ctx.fillStyle="#C1121F";
+
+function drawBuilding(x,y,width,height,flip=false){
+
+    ctx.save();
+
+
+    ctx.translate(
+
+        x + width / 2,
+
+        y + height / 2
+
+    );
+
+
+    if(flip){
+
+        ctx.scale(1,-1);
+
+    }
+
+
+    ctx.rotate(Math.PI / 2);
+
+
+
+    ctx.drawImage(
+
+        edificioNoche,
+
+        -height / 2,
+
+        -width / 2,
+
+        height,
+
+        width
+
+    );
+
+
+    ctx.restore();
+
+}
+
+
+
+function drawObstacles(){
 
     obstacles.forEach((obstacle)=>{
 
-        ctx.fillRect(
+
+        drawBuilding(
 
             obstacle.x,
+
             0,
+
             obstacle.width,
-            obstacle.top
+
+            obstacle.top,
+
+            true
 
         );
 
-        ctx.fillRect(
+
+
+        drawBuilding(
 
             obstacle.x,
-            canvas.height-obstacle.bottom,
+
+            canvas.height - obstacle.bottom,
+
             obstacle.width,
+
             obstacle.bottom
 
         );
+
 
     });
 
 }
 
+
+
 function updateObstacles(){
 
     obstacles.forEach((obstacle)=>{
 
-        obstacle.x-=obstacle.speed;
+
+        obstacle.x -= obstacle.speed;
+
+
 
         if(
 
             !obstacle.passed &&
 
-            obstacle.x+obstacle.width<player.x
+            obstacle.x + obstacle.width < player.x
 
         ){
 
-            obstacle.passed=true;
+            obstacle.passed = true;
+
 
             score++;
 
-            scoreElement.textContent=score;
+
+            scoreElement.textContent = score;
 
         }
 
+
     });
 
-    obstacles=obstacles.filter(
 
-        obstacle=>obstacle.x+obstacle.width>0
+
+    obstacles = obstacles.filter(
+
+        obstacle => obstacle.x + obstacle.width > 0
 
     );
 
+
+
     frame++;
 
-    if(frame%120===0){
+
+
+    if(frame % 120 === 0){
 
         createObstacle();
 
@@ -220,7 +355,9 @@ function updateObstacles(){
 }
 
 
+
 function checkCollision(){
+
 
     if(player.y-player.radius<=0){
 
@@ -230,6 +367,8 @@ function checkCollision(){
 
     }
 
+
+
     if(player.y+player.radius>=canvas.height){
 
         endGame();
@@ -238,23 +377,32 @@ function checkCollision(){
 
     }
 
+
+
     obstacles.forEach((obstacle)=>{
 
-        const hitX=
 
-            player.x+player.radius>obstacle.x &&
+        const hitX =
 
-            player.x-player.radius<obstacle.x+obstacle.width;
+            player.x + player.radius > obstacle.x &&
 
-        const hitTop=
+            player.x - player.radius < obstacle.x + obstacle.width;
 
-            player.y-player.radius<obstacle.top;
 
-        const hitBottom=
 
-            player.y+player.radius>
+        const hitTop =
 
-            canvas.height-obstacle.bottom;
+            player.y - player.radius < obstacle.top;
+
+
+
+        const hitBottom =
+
+            player.y + player.radius >
+
+            canvas.height - obstacle.bottom;
+
+
 
         if(
 
@@ -268,17 +416,24 @@ function checkCollision(){
 
         }
 
+
     });
 
+
 }
+
+
 
 function updatePlayer(){
 
-    player.velocity+=player.gravity;
+    player.velocity += player.gravity;
 
-    player.y+=player.velocity;
+    player.y += player.velocity;
 
 }
+
+
+
 
 function update(){
 
@@ -288,6 +443,7 @@ function update(){
 
     }
 
+
     updatePlayer();
 
     updateObstacles();
@@ -295,6 +451,8 @@ function update(){
     checkCollision();
 
 }
+
+
 
 function render(){
 
@@ -306,9 +464,13 @@ function render(){
 
 }
 
+
+
 function startGame(){
 
+
     if(!gameRunning){
+
 
         started=true;
 
@@ -316,21 +478,30 @@ function startGame(){
 
         gameEnded=false;
 
+
         score=0;
 
+
         scoreElement.textContent=0;
+
 
         startScreen.style.display="none";
 
         gameOverScreen.style.display="none";
 
+
     }
+
 
     player.velocity=player.jump;
 
+
 }
 
+
+
 function endGame(){
+
 
     if(gameEnded){
 
@@ -338,140 +509,231 @@ function endGame(){
 
     }
 
+
+
     gameEnded=true;
 
     gameRunning=false;
 
+
+
     finalScore.textContent=score;
+
 
     newRecordElement.style.display="none";
 
+
+
     profile=getProfile();
+
+
 
     if(profile){
 
-    profile.puntos = (profile.puntos || 0) + score;
 
-    profile.puntosTotales = (profile.puntosTotales || 0) + score;
+        profile.puntos =
 
-    if(score > (profile.spiderFlappyRecord || 0)){
+        (profile.puntos || 0) + score;
 
-        profile.spiderFlappyRecord = score;
 
-        bestScore = score;
 
-        newRecordElement.style.display = "inline";
+        profile.puntosTotales =
+
+        (profile.puntosTotales || 0) + score;
+
+
+
+        if(score > (profile.spiderFlappyRecord || 0)){
+
+
+            profile.spiderFlappyRecord = score;
+
+
+            bestScore = score;
+
+
+            newRecordElement.style.display="inline";
+
+
+        }
+
+
+
+        if(score > (profile.recordGlobal || 0)){
+
+
+            profile.recordGlobal = score;
+
+
+        }
+
+
+
+        totalPoints = profile.puntosTotales;
+
+
+        saveProfile(profile);
+
 
     }
 
-    if(score > (profile.recordGlobal || 0)){
 
-        profile.recordGlobal = score;
-
-    }
-
-    totalPoints = profile.puntosTotales;
-
-    saveProfile(profile);
-
-}
 
     bestScoreElement.textContent=bestScore;
 
     totalPointsElement.textContent=totalPoints;
 
+
+
     gameOverScreen.style.display="flex";
 
+
 }
+
 
 
 
 function restartGame(){
 
+
     player.y=300;
 
     player.velocity=0;
 
+
     obstacles=[];
+
 
     frame=0;
 
+
     score=0;
+
 
     gameEnded=false;
 
+
+
     scoreElement.textContent=0;
+
 
     finalScore.textContent=0;
 
+
+
     newRecordElement.style.display="none";
+
+
 
     gameOverScreen.style.display="none";
 
+
     gameRunning=true;
+
 
 }
 
+
+
 document.addEventListener("keydown",(e)=>{
+
 
     if(e.code==="Space"){
 
+
         e.preventDefault();
+
 
         startGame();
 
+
     }
 
+
 });
+
+
 
 startScreen.addEventListener("click",()=>{
 
+
     startGame();
 
+
 });
+
+
 
 startScreen.addEventListener("touchstart",(e)=>{
 
+
     e.preventDefault();
+
 
     startGame();
 
+
 },{passive:false});
+
+
 
 canvas.addEventListener("click",()=>{
 
+
     startGame();
 
+
 });
+
+
 
 canvas.addEventListener("touchstart",(e)=>{
 
+
     e.preventDefault();
+
 
     startGame();
 
+
 },{passive:false});
+
+
 
 restartButton.addEventListener("click",(e)=>{
 
+
     e.preventDefault();
 
+
     restartGame();
+
 
 });
 
+
+
 restartButton.addEventListener("touchstart",(e)=>{
+
 
     e.preventDefault();
 
+
     restartGame();
 
+
 },{passive:false});
+
+
+
 
 
 function actualizarDatosPerfil(){
 
+
     profile=getProfile();
+
+
 
     if(!profile){
 
@@ -479,26 +741,44 @@ function actualizarDatosPerfil(){
 
     }
 
-    bestScore=profile.spiderFlappyRecord||0;
 
-    totalPoints=profile.puntosTotales||0;
+
+    bestScore = profile.spiderFlappyRecord || 0;
+
+
+    totalPoints = profile.puntosTotales || 0;
+
+
 
     bestScoreElement.textContent=bestScore;
 
+
     totalPointsElement.textContent=totalPoints;
 
+
 }
+
+
+
 
 function gameLoop(){
 
+
     update();
+
 
     render();
 
+
     requestAnimationFrame(gameLoop);
+
 
 }
 
+
+
+
 actualizarDatosPerfil();
+
 
 gameLoop();
