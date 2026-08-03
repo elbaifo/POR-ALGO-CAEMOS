@@ -52,6 +52,15 @@ const ciudadNoche = new Image();
 ciudadNoche.src = "ciudad_noche.png";
 
 
+const musica = new Audio();
+
+musica.src = "spidermusic.mp3";
+
+musica.loop = true;
+
+musica.volume = 0.4;
+
+
 
 let bestScore = 0;
 let totalPoints = 0;
@@ -507,6 +516,8 @@ function startGame(){
     player.velocity=player.jump;
 
 
+    musica.play();
+
 }
 
 
@@ -525,6 +536,11 @@ function endGame(){
     gameEnded=true;
 
     gameRunning=false;
+
+
+    musica.pause();
+
+    musica.currentTime = 0;
 
 
 
