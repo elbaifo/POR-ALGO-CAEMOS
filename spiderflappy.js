@@ -33,6 +33,15 @@ function saveProfile(profile){
 
 let profile = getProfile();
 
+const spiderSubida = new Image();
+spiderSubida.src = "spidersubida.png";
+
+const spiderMedio = new Image();
+spiderMedio.src = "spidermedio.png";
+
+const spiderCaida = new Image();
+spiderCaida.src = "spidercaida.png";
+
 let bestScore = 0;
 let totalPoints = 0;
 
@@ -83,15 +92,27 @@ function drawBackground(){
 
 function drawPlayer(){
 
-    ctx.font="40px Arial";
-    ctx.textAlign="center";
-    ctx.textBaseline="middle";
+    let sprite = spiderMedio;
 
-    ctx.fillText(
+    if(player.velocity < -2){
 
-        "🕷️",
-        player.x,
-        player.y
+        sprite = spiderSubida;
+
+    }else if(player.velocity > 2){
+
+        sprite = spiderCaida;
+
+    }
+
+    const size = 64;
+
+    ctx.drawImage(
+
+        sprite,
+        player.x - size / 2,
+        player.y - size / 2,
+        size,
+        size
 
     );
 
