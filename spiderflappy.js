@@ -36,17 +36,22 @@ function saveProfile(profile){
 
 let profile = getProfile();
 
+
 const spiderSubida = new Image();
 spiderSubida.src = "spidersubida.png";
+
 
 const spiderMedio = new Image();
 spiderMedio.src = "spidermedio.png";
 
+
 const spiderCaida = new Image();
 spiderCaida.src = "spidercaida.png";
 
+
 const edificioNoche = new Image();
 edificioNoche.src = "edificio_noche.png";
+
 
 const ciudadNoche = new Image();
 ciudadNoche.src = "ciudad_noche.png";
@@ -63,6 +68,7 @@ musica.volume = 0.4;
 
 
 let bestScore = 0;
+
 let totalPoints = 0;
 
 
@@ -99,22 +105,22 @@ const player = {
 
 
 
-let started=false;
+let started = false;
 
-let gameRunning=false;
+let gameRunning = false;
 
-let gameEnded=false;
-
-
-
-let obstacles=[];
+let gameEnded = false;
 
 
-let frame=0;
 
-let score=0;
+let obstacles = [];
 
-let gameSpeed=3;
+
+let frame = 0;
+
+let score = 0;
+
+let gameSpeed = 3;
 
 
 
@@ -230,7 +236,7 @@ function createObstacle(){
 
         speed:gameSpeed,
 
-passed:false
+        passed:false
 
     });
 
@@ -344,11 +350,18 @@ function updateObstacles(){
             obstacle.passed = true;
 
 
+            score++;
+
+
+            scoreElement.textContent = score;
+
+
+
             if(score % 10 === 0){
 
-    gameSpeed += 0.3;
+                gameSpeed += 0.3;
 
-}
+            }
 
         }
 
@@ -456,8 +469,6 @@ function updatePlayer(){
 }
 
 
-
-
 function update(){
 
     if(!gameRunning){
@@ -505,6 +516,9 @@ function startGame(){
         score=0;
 
 
+        gameSpeed=3;
+
+
         scoreElement.textContent=0;
 
 
@@ -543,7 +557,7 @@ function endGame(){
 
     musica.pause();
 
-    musica.currentTime = 0;
+    musica.currentTime=0;
 
 
 
@@ -639,10 +653,11 @@ function restartGame(){
 
     score=0;
 
-gameSpeed=3;
+
+    gameSpeed=3;
 
 
-gameEnded=false;
+    gameEnded=false;
 
 
 
@@ -664,7 +679,6 @@ gameEnded=false;
 
 
 }
-
 
 
 document.addEventListener("keydown",(e)=>{
