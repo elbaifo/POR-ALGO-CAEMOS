@@ -1412,3 +1412,47 @@ body.page-exit{
     }
 
 }
+
+
+
+.shop-game-title{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:14px;
+
+}
+
+.shop-game-title img{
+
+    width:52px;
+
+    height:52px;
+
+    object-fit:contain;
+
+    image-rendering:pixelated;
+
+}
+
+.rarity-gold{
+
+    color:#d7b46a !important;
+
+}
+
+.rarity-purple{
+
+    color:#b36cff !important;
+
+}
+
+.rarity-blue{
+
+    color:#58b8ff !important;
+
+}
