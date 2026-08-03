@@ -668,14 +668,14 @@ function cargarInventario(){
             <div class="shop-preview">
 
 
-                <img src="edificio-predeterminado.png" alt="Edificio inicial">
+                <img src="edificio_noche.png" alt="Edificio de noche">
 
 
             </div>
 
 
             <h3>
-                Edificio inicial
+                Edificio de noche
             </h3>
 
 
@@ -757,14 +757,14 @@ function cargarInventario(){
             <div class="shop-preview">
 
 
-                <img src="fondo-predeterminado.png" alt="Fondo inicial">
+                <img src="ciudad_noche.png" alt="Ciudad de noche">
 
 
             </div>
 
 
             <h3>
-                Fondo inicial
+                Ciudad de noche
             </h3>
 
 
