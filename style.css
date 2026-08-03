@@ -1209,13 +1209,18 @@ body.page-exit{
 
 }
 
-.shop-section h3{
+.inventory-section h3{
 
-    color:#d7b46a;
+    margin-top:45px;
 
-    font-size:20px;
+    margin-bottom:25px;
 
-    margin:30px 0 15px;
+}
+
+
+.inventory-section .shop-grid{
+
+    margin-bottom:50px;
 
 }
 
