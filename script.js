@@ -66,8 +66,6 @@ function iniciarAplicacion(){
 }
 
 
-actualizarPerfilJuegos();
-
 comprobarPerfilJuegos();
 
 
@@ -524,7 +522,7 @@ function comprobarPerfilJuegos(){
     const perfil = obtenerPerfil();
 
 
-    if(!perfil){
+    if(!perfil || !perfil.nombre){
 
         popup.style.display="flex";
 
