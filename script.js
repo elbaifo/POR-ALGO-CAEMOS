@@ -6,13 +6,13 @@ const MENSAJES_CARGA = [
 
     "Preparando el primer paso...",
 
-    "Levantando el camino...",
+    "Si me caigo...",
 
-    "Superando obstáculos...",
+    "Me levanto...",
 
     "Casi estamos listos...",
 
-    "Todo preparado."
+    "Aunque duela."
 
 ];
 
