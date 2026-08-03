@@ -633,6 +633,289 @@ function cargarInventario(){
 }
 
 
+function cargarInventario(){
+
+    const personajes = document.getElementById("inventario-personajes");
+    const edificios = document.getElementById("inventario-edificios");
+    const fondos = document.getElementById("inventario-fondos");
+
+
+    if(!personajes || !edificios || !fondos){
+
+        return;
+
+    }
+
+
+
+    personajes.innerHTML = `
+
+
+        <div class="shop-card">
+
+
+            <div class="shop-preview">
+
+
+                <img src="spiderman.png" alt="Spider-Man">
+
+
+            </div>
+
+
+            <h3>
+                Spider-Man
+            </h3>
+
+
+            <p class="shop-price">
+                Predeterminado
+            </p>
+
+
+        </div>
+
+
+
+        <div class="shop-card">
+
+
+            <div class="shop-preview">
+
+                🔒
+
+            </div>
+
+
+            <h3>
+                Próximamente
+            </h3>
+
+
+        </div>
+
+
+
+        <div class="shop-card">
+
+
+            <div class="shop-preview">
+
+                🔒
+
+            </div>
+
+
+            <h3>
+                Próximamente
+            </h3>
+
+
+        </div>
+
+
+
+        <div class="shop-card">
+
+
+            <div class="shop-preview">
+
+                🔒
+
+            </div>
+
+
+            <h3>
+                Próximamente
+            </h3>
+
+
+        </div>
+
+
+    `;
+
+
+
+    edificios.innerHTML = `
+
+
+        <div class="shop-card">
+
+
+            <div class="shop-preview">
+
+
+                <img src="edificio-predeterminado.png" alt="Edificio inicial">
+
+
+            </div>
+
+
+            <h3>
+                Edificio inicial
+            </h3>
+
+
+            <p class="shop-price">
+                Predeterminado
+            </p>
+
+
+        </div>
+
+
+
+        <div class="shop-card">
+
+
+            <div class="shop-preview">
+
+                🔒
+
+            </div>
+
+
+            <h3>
+                Próximamente
+            </h3>
+
+
+        </div>
+
+
+
+        <div class="shop-card">
+
+
+            <div class="shop-preview">
+
+                🔒
+
+            </div>
+
+
+            <h3>
+                Próximamente
+            </h3>
+
+
+        </div>
+
+
+
+        <div class="shop-card">
+
+
+            <div class="shop-preview">
+
+                🔒
+
+            </div>
+
+
+            <h3>
+                Próximamente
+            </h3>
+
+
+        </div>
+
+
+    `;
+
+
+
+    fondos.innerHTML = `
+
+
+        <div class="shop-card">
+
+
+            <div class="shop-preview">
+
+
+                <img src="fondo-predeterminado.png" alt="Fondo inicial">
+
+
+            </div>
+
+
+            <h3>
+                Fondo inicial
+            </h3>
+
+
+            <p class="shop-price">
+                Predeterminado
+            </p>
+
+
+        </div>
+
+
+
+        <div class="shop-card">
+
+
+            <div class="shop-preview">
+
+                🔒
+
+            </div>
+
+
+            <h3>
+                Próximamente
+            </h3>
+
+
+        </div>
+
+
+
+        <div class="shop-card">
+
+
+            <div class="shop-preview">
+
+                🔒
+
+            </div>
+
+
+            <h3>
+                Próximamente
+            </h3>
+
+
+        </div>
+
+
+
+        <div class="shop-card">
+
+
+            <div class="shop-preview">
+
+                🔒
+
+            </div>
+
+
+            <h3>
+                Próximamente
+            </h3>
+
+
+        </div>
+
+
+    `;
+
+
+}
+
 window.addEventListener("pageshow",(event)=>{
 
 
