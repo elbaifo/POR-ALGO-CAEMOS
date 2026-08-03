@@ -65,6 +65,9 @@ function iniciarAplicacion(){
 
     actualizarPerfilJuegos();
 
+    cargarInventario();
+
+
 }
 
 
@@ -550,6 +553,84 @@ function registrarServiceWorker(){
 
 }
 
+function cargarInventario(){
+
+    const perfil = obtenerPerfil();
+
+
+    if(!perfil || !perfil.inventario){
+
+        return;
+
+    }
+
+
+    const personajes = document.getElementById("inventario-personajes");
+    const edificios = document.getElementById("inventario-edificios");
+    const fondos = document.getElementById("inventario-fondos");
+
+
+    if(!personajes && !edificios && !fondos){
+
+        return;
+
+    }
+
+
+
+    perfil.inventario.forEach(objeto=>{
+
+
+        const tarjeta = `
+
+            <div class="shop-card">
+
+
+                <div class="shop-preview">
+
+                    <img src="${objeto.imagen}" alt="${objeto.nombre}">
+
+                </div>
+
+
+                <h3>
+
+                    ${objeto.nombre}
+
+                </h3>
+
+
+            </div>
+
+        `;
+
+
+
+        if(objeto.tipo==="personaje" && personajes){
+
+            personajes.innerHTML += tarjeta;
+
+        }
+
+
+        if(objeto.tipo==="edificio" && edificios){
+
+            edificios.innerHTML += tarjeta;
+
+        }
+
+
+        if(objeto.tipo==="fondo" && fondos){
+
+            fondos.innerHTML += tarjeta;
+
+        }
+
+
+    });
+
+
+}
 
 
 window.addEventListener("pageshow",(event)=>{
