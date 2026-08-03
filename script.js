@@ -63,6 +63,8 @@ function iniciarAplicacion(){
 
     cargarPerfil();
 
+    actualizarPerfilJuegos();
+
 }
 
 
