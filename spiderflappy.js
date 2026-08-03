@@ -114,6 +114,8 @@ let frame=0;
 
 let score=0;
 
+let gameSpeed=3;
+
 
 
 function drawBackground(){
@@ -226,9 +228,9 @@ function createObstacle(){
 
         bottom:canvas.height-topHeight-gap,
 
-        speed:3,
+        speed:gameSpeed,
 
-        passed:false
+passed:false
 
     });
 
@@ -342,10 +344,11 @@ function updateObstacles(){
             obstacle.passed = true;
 
 
-            score++;
+            if(score % 10 === 0){
 
+    gameSpeed += 0.3;
 
-            scoreElement.textContent = score;
+}
 
         }
 
@@ -636,8 +639,10 @@ function restartGame(){
 
     score=0;
 
+gameSpeed=3;
 
-    gameEnded=false;
+
+gameEnded=false;
 
 
 
