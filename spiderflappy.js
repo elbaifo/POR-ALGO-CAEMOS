@@ -36,29 +36,20 @@ function saveProfile(profile){
 
 let profile = getProfile();
 
-
-// =========================
-// SPRITES
-// =========================
-
 const spiderSubida = new Image();
 spiderSubida.src = "spidersubida.png";
-
 
 const spiderMedio = new Image();
 spiderMedio.src = "spidermedio.png";
 
-
 const spiderCaida = new Image();
 spiderCaida.src = "spidercaida.png";
 
-
-// =========================
-// EDIFICIOS
-// =========================
-
 const edificioNoche = new Image();
 edificioNoche.src = "edificio_noche.png";
+
+const ciudadNoche = new Image();
+ciudadNoche.src = "ciudad_noche.png";
 
 
 
@@ -118,19 +109,39 @@ let score=0;
 
 function drawBackground(){
 
-    ctx.fillStyle="#160808";
+    if(ciudadNoche.complete){
 
-    ctx.fillRect(
+        ctx.drawImage(
 
-        0,
+            ciudadNoche,
 
-        0,
+            0,
 
-        canvas.width,
+            0,
 
-        canvas.height
+            canvas.width,
 
-    );
+            canvas.height
+
+        );
+
+    }else{
+
+        ctx.fillStyle="#160808";
+
+        ctx.fillRect(
+
+            0,
+
+            0,
+
+            canvas.width,
+
+            canvas.height
+
+        );
+
+    }
 
 }
 
