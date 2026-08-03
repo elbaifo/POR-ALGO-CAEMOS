@@ -329,33 +329,31 @@ function endGame(){
 
     if(profile){
 
-        if(score>bestScore){
+    profile.puntos = (profile.puntos || 0) + score;
 
-            bestScore=score;
+    profile.puntosTotales = (profile.puntosTotales || 0) + score;
 
-            profile.spiderFlappyRecord=bestScore;
+    if(score > (profile.spiderFlappyRecord || 0)){
 
-            profile.recordGlobal=Math.max(
+        profile.spiderFlappyRecord = score;
 
-                profile.recordGlobal||0,
+        bestScore = score;
 
-                bestScore
-
-            );
-
-            newRecordElement.style.display="inline";
-
-        }
-
-        profile.puntos=(profile.puntos||0)+score;
-
-        profile.puntosTotales=(profile.puntosTotales||0)+score;
-
-        totalPoints=profile.puntosTotales;
-
-        saveProfile(profile);
+        newRecordElement.style.display = "inline";
 
     }
+
+    if(score > (profile.recordGlobal || 0)){
+
+        profile.recordGlobal = score;
+
+    }
+
+    totalPoints = profile.puntosTotales;
+
+    saveProfile(profile);
+
+}
 
     bestScoreElement.textContent=bestScore;
 
