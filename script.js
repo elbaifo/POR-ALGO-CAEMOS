@@ -66,6 +66,9 @@ function iniciarAplicacion(){
 }
 
 
+actualizarPerfilJuegos();
+
+
 
 activarTransiciones();
 
@@ -381,55 +384,7 @@ function cargarPerfil(){
 
         </h2>
 
-
-        <div class="profile-stats">
-
-
-            <p>
-
-                Puntos: ${perfil.puntos}
-
-            </p>
-
-
-            <p>
-
-                Monedas: ${perfil.monedas}
-
-            </p>
-
-
-            <p>
-
-                Récord global: ${perfil.recordGlobal}
-
-            </p>
-
-
-            <p>
-
-                Puntos totales: ${perfil.puntosTotales}
-
-            </p>
-
-
-            <p>
-
-                Juegos completados: ${perfil.juegos}
-
-            </p>
-
-
-            <p>
-
-                Skins: ${perfil.skinsCompradas.length}
-
-            </p>
-
-
-        </div>
-
-    `;
+`;
 
 }
 
@@ -519,7 +474,37 @@ function guardarPerfil(perfil){
 
 }
 
+function actualizarPerfilJuegos(){
 
+    const perfil = obtenerPerfil();
+
+
+    if(!perfil){
+
+        return;
+
+    }
+
+
+    const record = document.getElementById("profile-spider-record");
+
+    const puntos = document.getElementById("profile-spider-points");
+
+
+    if(record){
+
+        record.textContent = perfil.spiderFlappyRecord || 0;
+
+    }
+
+
+    if(puntos){
+
+        puntos.textContent = perfil.puntos || 0;
+
+    }
+
+}
 
 function registrarServiceWorker(){
 
