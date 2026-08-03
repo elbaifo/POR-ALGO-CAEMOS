@@ -65,11 +65,7 @@ function iniciarAplicacion(){
 
 }
 
-if(document.getElementById("spiderflappy-record")){
 
-    actualizarRecords();
-
-}
 
 activarTransiciones();
 
@@ -520,27 +516,6 @@ function guardarPerfil(perfil){
         JSON.stringify(perfil)
 
     );
-
-}
-
-function actualizarRecords(){
-
-    const perfil = obtenerPerfil();
-
-    if(!perfil){
-
-        return;
-
-    }
-
-    const spiderRecord = document.getElementById("spiderflappy-record");
-
-    if(spiderRecord){
-
-        spiderRecord.textContent =
-        "Récord: " + (perfil.spiderFlappyRecord || 0);
-
-    }
 
 }
 
