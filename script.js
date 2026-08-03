@@ -68,6 +68,8 @@ function iniciarAplicacion(){
 
 actualizarPerfilJuegos();
 
+comprobarPerfilJuegos();
+
 
 
 activarTransiciones();
@@ -501,6 +503,34 @@ function actualizarPerfilJuegos(){
     if(puntos){
 
         puntos.textContent = perfil.puntos || 0;
+
+    }
+
+}
+
+
+function comprobarPerfilJuegos(){
+
+    const popup = document.getElementById("profile-required-popup");
+
+
+    if(!popup){
+
+        return;
+
+    }
+
+
+    const perfil = obtenerPerfil();
+
+
+    if(!perfil){
+
+        popup.style.display="flex";
+
+    }else{
+
+        popup.style.display="none";
 
     }
 
