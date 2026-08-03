@@ -1195,17 +1195,27 @@ body.page-exit{
 
 .shop-section{
 
-    margin-top:40px;
+    margin-top:45px;
 
 }
 
 .shop-section h2{
 
-    margin-bottom:20px;
+    color:white;
 
-    font-size:28px;
+    font-size:30px;
 
-    color:#ffffff;
+    margin-bottom:25px;
+
+}
+
+.shop-section h3{
+
+    color:#d7b46a;
+
+    font-size:20px;
+
+    margin:30px 0 15px;
 
 }
 
@@ -1215,15 +1225,17 @@ body.page-exit{
 
     grid-template-columns:repeat(3,1fr);
 
-    gap:20px;
+    gap:22px;
+
+    margin-bottom:20px;
 
 }
 
 .shop-card{
 
-    background:#1f1111;
+    background:#1b1010;
 
-    border:2px solid #3a1d1d;
+    border:2px solid #382020;
 
     border-radius:18px;
 
@@ -1241,25 +1253,27 @@ body.page-exit{
 
     border-color:#8b2d2d;
 
+    box-shadow:0 0 18px rgba(139,45,45,.35);
+
 }
 
 .shop-preview{
 
     width:100%;
 
-    aspect-ratio:1/1;
+    aspect-ratio:1;
 
-    background:#2a1818;
+    background:#2b1717;
 
     border-radius:12px;
+
+    overflow:hidden;
 
     display:flex;
 
     align-items:center;
 
     justify-content:center;
-
-    overflow:hidden;
 
     margin-bottom:15px;
 
@@ -1275,13 +1289,37 @@ body.page-exit{
 
 }
 
+.shop-placeholder{
+
+    width:100%;
+
+    aspect-ratio:1;
+
+    background:#2b1717;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:70px;
+
+    color:#555;
+
+    margin-bottom:15px;
+
+}
+
 .shop-card h3{
 
     color:white;
 
-    margin-bottom:10px;
-
     font-size:20px;
+
+    margin-bottom:10px;
 
 }
 
@@ -1291,9 +1329,9 @@ body.page-exit{
 
     font-size:18px;
 
-    margin-bottom:15px;
-
     font-weight:bold;
+
+    margin-bottom:15px;
 
 }
 
@@ -1313,6 +1351,8 @@ body.page-exit{
 
     font-size:16px;
 
+    font-weight:bold;
+
     cursor:pointer;
 
     transition:.2s;
@@ -1321,7 +1361,7 @@ body.page-exit{
 
 .shop-button:hover{
 
-    background:#b23b3b;
+    background:#b83f3f;
 
 }
 
@@ -1345,7 +1385,7 @@ body.page-exit{
 
 }
 
-@media(max-width:480px){
+@media(max-width:520px){
 
     .shop-card{
 
@@ -1361,7 +1401,13 @@ body.page-exit{
 
     .shop-price{
 
-        font-size:16px;
+        font-size:15px;
+
+    }
+
+    .shop-placeholder{
+
+        font-size:55px;
 
     }
 
