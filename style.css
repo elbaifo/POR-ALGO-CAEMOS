@@ -297,6 +297,8 @@ body::before{
 
     margin-top:25px;
 
+    margin-bottom:40px;
+
 }
 
 .profile-input input{
@@ -358,6 +360,79 @@ body::before{
     background:rgba(193,18,31,.35);
 
     transform:translateY(-3px);
+
+}
+
+.game-profile-card{
+
+    width:100%;
+
+    max-width:500px;
+
+    padding:25px;
+
+    margin-top:25px;
+
+    background:rgba(26,13,13,.78);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid var(--border);
+
+    border-radius:22px;
+
+}
+
+
+.game-profile-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:15px;
+
+}
+
+
+.game-profile-header img{
+
+    width:80px;
+
+    height:80px;
+
+    object-fit:contain;
+
+    border-radius:18px;
+
+}
+
+
+.game-profile-header h3{
+
+    font-size:1.4rem;
+
+}
+
+
+.game-profile-stats{
+
+    margin-top:20px;
+
+}
+
+
+.game-profile-stats p{
+
+    color:var(--text-secondary);
+
+    margin:10px 0;
+
+    font-size:1.05rem;
 
 }
 
