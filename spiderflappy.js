@@ -919,7 +919,7 @@ function actualizarDatosPerfil(){
 
 
 
-const FPS = 60;
+const FPS = 70;
 const FRAME_TIME = 1000 / FPS;
 
 let lastFrame = 0;
