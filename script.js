@@ -703,6 +703,62 @@ function cargarInventario(){
     });
 
 
+document.querySelectorAll("[data-equipar]").forEach(boton=>{
+
+    boton.addEventListener("click",()=>{
+
+        equiparCosmetico(boton.dataset.equipar);
+
+    });
+
+});
+
+}
+
+function equiparCosmetico(id){
+
+    const perfil = obtenerPerfil();
+
+    if(!perfil){
+        return;
+    }
+
+
+    const objetos = {
+
+        spiderman:"personaje",
+
+        edificio_noche:"edificio",
+
+        edificio_dia:"edificio",
+
+        ciudad_noche:"fondo",
+
+        ciudad_dia:"fondo"
+
+    };
+
+
+    const tipo = objetos[id];
+
+
+    if(!tipo){
+        return;
+    }
+
+
+
+    perfil.equipado[tipo] = id;
+
+
+    guardarPerfil(perfil);
+
+
+
+    mostrarDynamicIsland(
+        "Cosmético equipado correctamente."
+    );
+
 }
 
 window.addEventListener("pageshow",(event)=>{
