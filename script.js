@@ -258,9 +258,18 @@ function crearPerfil(){
 
         skinsCompradas:[],
 
-        inventario:[],
+        inventario:[
+    "edificio_noche",
+    "ciudad_noche"
+],
 
-        ajustes:{},
+equipado:{
+    personaje:"spiderman",
+    edificio:"edificio_noche",
+    fondo:"ciudad_noche"
+},
+
+ajustes:{},
 
         version:VERSION
 
