@@ -24,6 +24,51 @@ function inicializarTienda(){
 
 function comprarCosmetico(itemId){
 
+    const perfil = obtenerPerfil();
+
+    if(!perfil) return;
+
+    const precios = {
+
+        edificio_dia:100,
+        ciudad_dia:120
+
+    };
+
+    const precio = precios[itemId];
+
+    const boton = document.querySelector(`[data-item="${itemId}"]`);
+
+    if(perfil.inventario.includes(itemId)) return;
+
+    if(perfil.puntos >= precio){
+
+        perfil.puntos -= precio;
+
+        perfil.inventario.push(itemId);
+
+        guardarPerfil(perfil);
+
+        actualizarPerfilJuegos();
+
+        actualizarBotones();
+
+        mostrarDynamicIsland(
+            "Selecciona tu cosmético comprado en tu perfil.",
+            "success"
+        );
+
+    }else{
+
+        agitarBoton(boton);
+
+        mostrarDynamicIsland(
+            "No tienes suficientes puntos para comprar este cosmético.",
+            "error"
+        );
+
+    }
+
 }
 
 function actualizarBotones(){
