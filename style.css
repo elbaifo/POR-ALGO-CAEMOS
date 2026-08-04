@@ -1171,7 +1171,7 @@ body.page-exit{
 
     border-radius:18px;
 
-    background:var(--primary);
+    background:var(--);
 
     color:white;
 
@@ -1206,6 +1206,20 @@ body.page-exit{
     font-size:30px;
 
     margin-bottom:25px;
+
+}
+
+.shop-section h3{
+
+    margin-top:45px;
+
+    margin-bottom:25px;
+
+}
+
+.shop-section .shop-grid{
+
+    margin-bottom:50px;
 
 }
 
