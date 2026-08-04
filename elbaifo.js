@@ -772,6 +772,8 @@ if(musicEnabled){
 
 }
 
+jump();
+
 }
 
 
