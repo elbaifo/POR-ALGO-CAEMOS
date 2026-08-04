@@ -687,51 +687,48 @@ function endGame(){
     if(profile){
 
 
-        profile.puntos =
+    profile.puntos =
 
-        (profile.puntos || 0) + score;
+    (profile.puntos || 0) + score;
 
 
-
-        profile.puntosTotales =
-
-        (profile.puntosTotales || 0) + score;
+    profile.puntosTotales = profile.puntos;
 
 
 
-        if(score > (profile.spiderFlappyRecord || 0)){
+    if(score > (profile.spiderFlappyRecord || 0)){
 
 
-            profile.spiderFlappyRecord = score;
+        profile.spiderFlappyRecord = score;
 
 
-            bestScore = score;
+        bestScore = score;
 
 
-            newRecordElement.style.display="inline";
-
-
-        }
-
-
-
-        if(score > (profile.recordGlobal || 0)){
-
-
-            profile.recordGlobal = score;
-
-
-        }
-
-
-
-        totalPoints = profile.puntosTotales;
-
-
-        saveProfile(profile);
+        newRecordElement.style.display="inline";
 
 
     }
+
+
+
+    if(score > (profile.recordGlobal || 0)){
+
+
+        profile.recordGlobal = score;
+
+
+    }
+
+
+
+    totalPoints = profile.puntosTotales;
+
+
+    saveProfile(profile);
+
+
+}
 
 
 
