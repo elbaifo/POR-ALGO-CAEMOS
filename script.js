@@ -572,277 +572,135 @@ function cargarInventario(){
 
 
     if(!personajes || !edificios || !fondos){
-
         return;
-
     }
 
 
-
-    personajes.innerHTML = `
-
-
-        <div class="shop-card">
+    const perfil = obtenerPerfil();
 
 
-            <div class="shop-preview">
+    if(!perfil){
+        return;
+    }
 
 
-                <img src="spiderman.png" alt="Spider-Man">
+    const objetos = {
+
+        spiderman:{
+            nombre:"Spider-Man",
+            imagen:"spiderman.png",
+            tipo:"personaje"
+        },
 
 
-            </div>
+        edificio_noche:{
+            nombre:"Edificio de noche",
+            imagen:"edificio_noche.png",
+            tipo:"edificio"
+        },
+
+        edificio_dia:{
+            nombre:"Edificio Día",
+            imagen:"edificio_dia.png",
+            tipo:"edificio"
+        },
 
 
-            <h3>
-                Spider-Man
-            </h3>
+        ciudad_noche:{
+            nombre:"Ciudad de noche",
+            imagen:"ciudad_noche.png",
+            tipo:"fondo"
+        },
 
+        ciudad_dia:{
+            nombre:"Ciudad Día",
+            imagen:"ciudad_dia.png",
+            tipo:"fondo"
+        }
 
-            <p class="shop-price">
-                Predeterminado
-            </p>
-
-
-        </div>
-
-
-
-        <div class="shop-card">
-
-
-            <div class="shop-preview">
-
-                🔒
-
-            </div>
-
-
-            <h3>
-                Próximamente
-            </h3>
-
-
-        </div>
+    };
 
 
 
-        <div class="shop-card">
-
-
-            <div class="shop-preview">
-
-                🔒
-
-            </div>
-
-
-            <h3>
-                Próximamente
-            </h3>
-
-
-        </div>
+    personajes.innerHTML = "";
+    edificios.innerHTML = "";
+    fondos.innerHTML = "";
 
 
 
-        <div class="shop-card">
+    perfil.inventario.forEach(id=>{
 
 
-            <div class="shop-preview">
-
-                🔒
-
-            </div>
+        const objeto = objetos[id];
 
 
-            <h3>
-                Próximamente
-            </h3>
-
-
-        </div>
-
-
-    `;
+        if(!objeto){
+            return;
+        }
 
 
 
-    edificios.innerHTML = `
+        const tarjeta = `
+
+            <div class="shop-card">
 
 
-        <div class="shop-card">
+                <div class="shop-preview">
+
+                    <img src="${objeto.imagen}" alt="${objeto.nombre}">
+
+                </div>
 
 
-            <div class="shop-preview">
+                <h3>
+
+                    ${objeto.nombre}
+
+                </h3>
 
 
-                <img src="edificio_noche.png" alt="Edificio de noche">
+                <p class="shop-price">
+
+                    Obtenido
+
+                </p>
+
+
+                <button class="shop-button">
+
+                    Equipar
+
+                </button>
 
 
             </div>
 
+        `;
 
-            <h3>
-                Edificio de noche
-            </h3>
 
 
-            <p class="shop-price">
-                Predeterminado
-            </p>
+        if(objeto.tipo==="personaje"){
 
+            personajes.innerHTML += tarjeta;
 
-        </div>
+        }
 
 
+        if(objeto.tipo==="edificio"){
 
-        <div class="shop-card">
+            edificios.innerHTML += tarjeta;
 
+        }
 
-            <div class="shop-preview">
 
-                🔒
+        if(objeto.tipo==="fondo"){
 
-            </div>
+            fondos.innerHTML += tarjeta;
 
+        }
 
-            <h3>
-                Próximamente
-            </h3>
 
-
-        </div>
-
-
-
-        <div class="shop-card">
-
-
-            <div class="shop-preview">
-
-                🔒
-
-            </div>
-
-
-            <h3>
-                Próximamente
-            </h3>
-
-
-        </div>
-
-
-
-        <div class="shop-card">
-
-
-            <div class="shop-preview">
-
-                🔒
-
-            </div>
-
-
-            <h3>
-                Próximamente
-            </h3>
-
-
-        </div>
-
-
-    `;
-
-
-
-    fondos.innerHTML = `
-
-
-        <div class="shop-card">
-
-
-            <div class="shop-preview">
-
-
-                <img src="ciudad_noche.png" alt="Ciudad de noche">
-
-
-            </div>
-
-
-            <h3>
-                Ciudad de noche
-            </h3>
-
-
-            <p class="shop-price">
-                Predeterminado
-            </p>
-
-
-        </div>
-
-
-
-        <div class="shop-card">
-
-
-            <div class="shop-preview">
-
-                🔒
-
-            </div>
-
-
-            <h3>
-                Próximamente
-            </h3>
-
-
-        </div>
-
-
-
-        <div class="shop-card">
-
-
-            <div class="shop-preview">
-
-                🔒
-
-            </div>
-
-
-            <h3>
-                Próximamente
-            </h3>
-
-
-        </div>
-
-
-
-        <div class="shop-card">
-
-
-            <div class="shop-preview">
-
-                🔒
-
-            </div>
-
-
-            <h3>
-                Próximamente
-            </h3>
-
-
-        </div>
-
-
-    `;
+    });
 
 
 }
