@@ -919,24 +919,27 @@ function actualizarDatosPerfil(){
 
 
 
-function gameLoop(){
+const FPS = 45;
+const FRAME_TIME = 1000 / FPS;
 
+let lastFrame = 0;
 
-    update();
+function gameLoop(timestamp){
 
+    if(timestamp - lastFrame >= FRAME_TIME){
 
-    render();
+        lastFrame = timestamp;
 
+        update();
+
+        render();
+
+    }
 
     requestAnimationFrame(gameLoop);
 
-
 }
-
-
-
 
 actualizarDatosPerfil();
 
-
-gameLoop();
+requestAnimationFrame(gameLoop);
