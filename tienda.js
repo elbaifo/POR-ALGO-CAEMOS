@@ -132,3 +132,39 @@ function agitarBoton(boton){
     );
 
 }
+
+
+function mostrarDynamicIsland(texto){
+
+    const island = document.getElementById("dynamic-island");
+    const textoIsland = document.getElementById("dynamic-island-text");
+
+    if(!island || !textoIsland){
+        return;
+    }
+
+    textoIsland.textContent = texto;
+
+    island.classList.remove("hide");
+    island.classList.remove("show");
+
+    void island.offsetWidth;
+
+    island.classList.add("show");
+
+    clearTimeout(island.timeout);
+
+    island.timeout = setTimeout(()=>{
+
+        island.classList.remove("show");
+        island.classList.add("hide");
+
+        setTimeout(()=>{
+
+            island.classList.remove("hide");
+
+        },450);
+
+    },3000);
+
+}
