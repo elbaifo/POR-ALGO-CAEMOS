@@ -28,6 +28,28 @@ function comprarCosmetico(itemId){
 
 function actualizarBotones(){
 
+    const perfil = obtenerPerfil();
+
+    if(!perfil) return;
+
+    document.querySelectorAll(".shop-button[data-item]").forEach(boton=>{
+
+        const comprado = perfil.inventario.includes(boton.dataset.item);
+
+        if(comprado){
+
+            boton.textContent = "Obtenido";
+            boton.disabled = true;
+
+        }else{
+
+            boton.textContent = "Comprar";
+            boton.disabled = false;
+
+        }
+
+    });
+
 }
 
 function mostrarDynamicIsland(texto,tipo){
