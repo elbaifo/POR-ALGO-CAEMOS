@@ -34,9 +34,21 @@ function saveProfile(profile){
 }
 
 
+let profile = getProfile();
+
+
+const spiderSubida = new Image();
+spiderSubida.src = "spidersubida.png";
+
+const spiderMedio = new Image();
+spiderMedio.src = "spidermedio.png";
+
+const spiderCaida = new Image();
+spiderCaida.src = "spidercaida.png";
+
+
 const edificioNoche = new Image();
 const ciudadNoche = new Image();
-
 
 
 function cargarCosmeticosEquipados(){
@@ -54,42 +66,28 @@ function cargarCosmeticosEquipados(){
     }
 
 
-
     const edificios = {
-
         edificio_noche:"edificio_noche.png",
         edificio_dia:"edificio_dia.png"
-
     };
-
 
 
     const fondos = {
-
         ciudad_noche:"ciudad_noche.png",
         ciudad_dia:"ciudad_dia.png"
-
     };
 
 
-
     edificioNoche.src =
-
     edificios[perfil.equipado.edificio]
-
     || "edificio_noche.png";
 
 
-
     ciudadNoche.src =
-
     fondos[perfil.equipado.fondo]
-
     || "ciudad_noche.png";
 
-
 }
-
 
 
 cargarCosmeticosEquipados();
