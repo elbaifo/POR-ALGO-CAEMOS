@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EL BAIFO RUN</title>
+
+    <link rel="icon" type="image/png" href="elbaifo.png">
+
+    <link rel="stylesheet" href="elbaifo.css">
+
+    <link rel="manifest" href="elbaifo_manifest.json">
+
+    <meta name="theme-color" content="#1b1b1b">
+
+</head>
+
+
+<body>
+
+    <div id="game-container">
+
+
+        <header id="game-header">
+
+
+            <a id="back-button" href="juegos.html">
+
+                ← Volver
+
+            </a>
+
+
+
+            <h1>
+
+                EL BAIFO RUN
+
+            </h1>
+
+
+
+            <button id="music-button" class="game-icon-button">
+
+                🔊
+
+            </button>
+
+
+        </header>
+
+
+
+
+        <div id="score-container">
+
+
+            <span>
+
+                Puntuación
+
+            </span>
+
+
+            <h2 id="score">
+
+                0
+
+            </h2>
+
+
+        </div>
+
+
+
+
+
+        <canvas id="game-canvas" width="800" height="400"></canvas>
+
+
+
+
+
+        <div id="start-screen">
+
+
+            <h2>
+
+                EL BAIFO RUN
+
+            </h2>
+
+
+
+            <p>
+
+                Toca la pantalla para empezar.
+
+            </p>
+
+
+        </div>
+
+
+
+
+
+
+        <div id="game-over" style="display:none;">
+
+
+
+            <h2>
+
+                GAME OVER
+
+            </h2>
+
+
+
+
+            <p>
+
+                Puntuación:
+
+                <span id="final-score">
+
+                    0
+
+                </span>
+
+
+            </p>
+
+
+
+
+
+
+            <p>
+
+                Récord:
+
+                <span id="best-score">
+
+                    0
+
+                </span>
+
+
+
+                <span id="new-record" style="display:none;">
+
+                    ¡NUEVO!
+
+                </span>
+
+
+            </p>
+
+
+
+
+
+
+            <p>
+
+                Puntos acumulados:
+
+                <span id="total-points">
+
+                    0
+
+                </span>
+
+
+            </p>
+
+
+
+
+
+            <button id="restart-button">
+
+                Jugar otra vez
+
+            </button>
+
+
+
+
+
+
+            <a id="exit-button" href="juegos.html">
+
+                Volver a Juegos
+
+            </a>
+
+
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+
+    <script src="elbaifo.js"></script>
+
+
+
+
+    <script>
+
+    if("serviceWorker" in navigator){
+
+        navigator.serviceWorker.register(
+
+            "elbaifo_sw.js"
+
+        );
+
+    }
+
+    </script>
+
+
+
+</body>
+
+</html>
