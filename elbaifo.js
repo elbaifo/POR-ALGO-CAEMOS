@@ -138,17 +138,13 @@ let bestScore = 0;
 
 let totalPoints = 0;
 
-
-
 if(profile){
 
     bestScore = profile.elBaifoRunRecord || 0;
 
-    totalPoints = profile.puntos || 0;
+    totalPoints = profile.elBaifoRunPoints || 0;
 
 }
-
-
 
 bestScoreElement.textContent = bestScore;
 
@@ -653,48 +649,11 @@ profile = getProfile();
 
 
 
-        profile.puntos =
+        profile.elBaifoRunPoints =
 
-            (profile.puntos || 0) + score;
+    (profile.elBaifoRunPoints || 0) + score;
 
-
-
-        profile.puntosTotales = profile.puntos;
-
-
-
-        if(score > (profile.elBaifoRunRecord || 0)){
-
-
-
-            profile.elBaifoRunRecord = score;
-
-
-
-            bestScore = score;
-
-
-
-            newRecordElement.style.display = "inline";
-
-
-        }
-
-
-
-        if(score > (profile.recordGlobal || 0)){
-
-
-
-            profile.recordGlobal = score;
-
-
-        }
-
-
-
-
-        totalPoints = profile.puntos;
+totalPoints = profile.elBaifoRunPoints;
 
 
 
@@ -954,15 +913,11 @@ function actualizarDatosPerfil(){
 
     bestScore = profile.elBaifoRunRecord || 0;
 
+totalPoints = profile.elBaifoRunPoints || 0;
 
-    totalPoints = profile.puntos || 0;
+bestScoreElement.textContent = bestScore;
 
-
-
-    bestScoreElement.textContent = bestScore;
-
-
-    totalPointsElement.textContent = totalPoints;
+totalPointsElement.textContent = totalPoints;
 
 
 
