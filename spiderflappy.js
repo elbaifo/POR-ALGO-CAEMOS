@@ -643,7 +643,9 @@ function startGame(){
 
     if(musicEnabled){
 
-    musica.play();
+        musica.play();
+
+    }
 
 }
 
