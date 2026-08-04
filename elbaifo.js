@@ -169,9 +169,9 @@ const player = {
 
     y:300,
 
-    width:45,
+    width:70,
 
-    height:45,
+    height:70,
 
 
     velocity:0,
@@ -235,7 +235,7 @@ function drawBackground(){
 
 function drawPlayer(){
 
-    ctx.font = "45px Arial";
+    ctx.font = "70px Arial";
 
     ctx.textAlign = "center";
 
@@ -301,21 +301,21 @@ function createObstacle(){
 
     const height =
 
-        Math.floor(
+    Math.floor(
 
-            Math.random() * 90
+        Math.random() * 45
 
-        ) + 30;
+    ) + 25;
 
 
 
-    const width =
+const width =
 
-        Math.floor(
+    Math.floor(
 
-            Math.random() * 80
+        Math.random() * 40
 
-        ) + 30;
+    ) + 20;
 
 
 
@@ -437,13 +437,11 @@ function updateObstacles(){
 
 
 
-    if(frame % 100 === 0){
+    if(frame % 140 === 0){
 
+    createObstacle();
 
-        createObstacle();
-
-
-    }
+}
 
 
 
@@ -458,18 +456,9 @@ function updateObstacles(){
 
 function updateScore(){
 
+    score++;
 
-    score += 0.05;
-
-
-
-    score = Math.floor(score);
-
-
-
-    scoreElement.textContent = score;
-
-
+    scoreElement.textContent = Math.floor(score / 4);
 
 }
 
@@ -665,14 +654,13 @@ function endGame(){
 
 
 
-    finalScore.textContent = score;
+    score = Math.floor(score / 4);
 
+finalScore.textContent = score;
 
-    newRecordElement.style.display = "none";
+newRecordElement.style.display = "none";
 
-
-
-    profile = getProfile();
+profile = getProfile();
 
 
 
@@ -789,10 +777,15 @@ function restartGame(){
 
     gameOverScreen.style.display = "none";
 
+gameRunning = true;
 
-    gameRunning = true;
+if(musicEnabled){
 
+    musica.currentTime = 0;
 
+    musica.play();
+
+}
 
 }
 
