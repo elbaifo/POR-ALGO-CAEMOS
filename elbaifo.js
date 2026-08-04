@@ -650,14 +650,21 @@ profile = getProfile();
 
 
         profile.elBaifoRunPoints =
-
     (profile.elBaifoRunPoints || 0) + score;
+
+if(score > (profile.elBaifoRunRecord || 0)){
+
+    profile.elBaifoRunRecord = score;
+
+    bestScore = score;
+
+    newRecordElement.style.display = "inline";
+
+}
 
 totalPoints = profile.elBaifoRunPoints;
 
-
-
-        saveProfile(profile);
+saveProfile(profile);
 
 
 
