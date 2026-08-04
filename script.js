@@ -489,30 +489,30 @@ function actualizarPerfilJuegos(){
 
     const perfil = obtenerPerfil();
 
-
     if(!perfil){
-
         return;
-
     }
 
+    const spiderRecord = document.getElementById("profile-spider-record");
+    const spiderPoints = document.getElementById("profile-spider-points");
 
-    const record = document.getElementById("profile-spider-record");
+    const baifoRecord = document.getElementById("profile-baifo-record");
+    const baifoPoints = document.getElementById("profile-baifo-points");
 
-    const puntos = document.getElementById("profile-spider-points");
-
-
-    if(record){
-
-        record.textContent = perfil.spiderFlappyRecord || 0;
-
+    if(spiderRecord){
+        spiderRecord.textContent = perfil.spiderFlappyRecord || 0;
     }
 
+    if(spiderPoints){
+        spiderPoints.textContent = perfil.puntos || 0;
+    }
 
-    if(puntos){
+    if(baifoRecord){
+        baifoRecord.textContent = perfil.elBaifoRunRecord || 0;
+    }
 
-        puntos.textContent = perfil.puntos || 0;
-
+    if(baifoPoints){
+        baifoPoints.textContent = perfil.elBaifoRunPoints || 0;
     }
 
 }
