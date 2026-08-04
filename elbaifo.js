@@ -576,14 +576,11 @@ function render(){
 
 function startGame(){
 
-
     if(!gameRunning){
-
 
         gameRunning = true;
 
         gameEnded = false;
-
 
         score = 0;
 
@@ -591,35 +588,23 @@ function startGame(){
 
         obstacles = [];
 
-
         gameSpeed = 6;
 
-
-
         scoreElement.textContent = 0;
-
 
         startScreen.style.display = "none";
 
         gameOverScreen.style.display = "none";
 
-
-
     }
 
-
-
     jump();
-
-
 
     if(musicEnabled){
 
         musica.play();
 
     }
-
-
 
 }
 
