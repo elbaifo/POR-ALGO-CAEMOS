@@ -6,6 +6,20 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 function inicializarTienda(){
 
+    const botones = document.querySelectorAll(".shop-button[data-item]");
+
+    botones.forEach(boton=>{
+
+        boton.addEventListener("click",()=>{
+
+            comprarCosmetico(boton.dataset.item);
+
+        });
+
+    });
+
+    actualizarBotones();
+
 }
 
 function comprarCosmetico(itemId){
