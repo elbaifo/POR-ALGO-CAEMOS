@@ -666,11 +666,11 @@ function cargarInventario(){
                 </p>
 
 
-                <button class="shop-button">
+                <button class="shop-button" data-equipar="${id}">
 
-                    Equipar
+    Equipar
 
-                </button>
+</button>
 
 
             </div>
