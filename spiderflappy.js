@@ -101,6 +101,78 @@ musica.loop = true;
 
 musica.volume = 0.4;
 
+const musicButton = document.getElementById("music-button");
+
+const MUSIC_KEY = "pac_music_enabled";
+
+
+let musicEnabled =
+
+    localStorage.getItem(MUSIC_KEY) !== "false";
+
+
+
+function actualizarBotonMusica(){
+
+    if(!musicButton){
+
+        return;
+
+    }
+
+
+    musicButton.textContent =
+
+        musicEnabled ? "🔊" : "🔇";
+
+}
+
+
+
+function cambiarMusica(){
+
+    musicEnabled = !musicEnabled;
+
+
+    localStorage.setItem(
+
+        MUSIC_KEY,
+
+        musicEnabled
+
+    );
+
+
+
+    if(!musicEnabled){
+
+        musica.pause();
+
+    }
+
+
+
+    actualizarBotonMusica();
+
+}
+
+
+
+if(musicButton){
+
+    musicButton.addEventListener(
+
+        "click",
+
+        cambiarMusica
+
+    );
+
+}
+
+
+
+actualizarBotonMusica();
 
 
 let bestScore = 0;
@@ -568,6 +640,8 @@ function startGame(){
 
     player.velocity=player.jump;
 
+
+    if(musicEnabled){
 
     musica.play();
 
