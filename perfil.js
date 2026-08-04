@@ -286,3 +286,7 @@ function mostrarDynamicIsland(texto){
     },3000);
 
 }
+
+
+<script src="script.js"></script>
+<script src="perfil.js"></script>
