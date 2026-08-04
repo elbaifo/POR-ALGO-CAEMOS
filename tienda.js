@@ -103,4 +103,32 @@ function mostrarDynamicIsland(texto,tipo){
 
 function agitarBoton(boton){
 
+    if(!boton) return;
+
+    boton.animate(
+
+        [
+
+            {transform:"translateX(0)",background:"#c1121f"},
+
+            {transform:"translateX(-8px)",background:"#ff2d2d"},
+
+            {transform:"translateX(8px)",background:"#ff2d2d"},
+
+            {transform:"translateX(-8px)",background:"#ff2d2d"},
+
+            {transform:"translateX(8px)",background:"#ff2d2d"},
+
+            {transform:"translateX(0)",background:"#8b2d2d"}
+
+        ],
+
+        {
+
+            duration:500
+
+        }
+
+    );
+
 }
