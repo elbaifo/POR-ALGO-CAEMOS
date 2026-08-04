@@ -333,3 +333,46 @@ body{
     }
 
 }
+
+.game-icon-button{
+
+    width:45px;
+    height:45px;
+
+    border-radius:12px;
+
+    border:2px solid rgba(255,255,255,0.2);
+
+    background:rgba(0,0,0,0.35);
+
+    color:white;
+
+    font-size:22px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    backdrop-filter:blur(8px);
+
+    transition:0.2s;
+
+}
+
+
+.game-icon-button:hover{
+
+    transform:scale(1.05);
+
+}
+
+
+.game-icon-button:active{
+
+    transform:scale(0.9);
+
+}
