@@ -13,9 +13,11 @@
 
     <link rel="stylesheet" href="elbaifo.css">
 
-    <link rel="manifest" href="elbaifo_manifest.json">
+    <link rel="manifest" href="elbaifo-manifest.json">
 
-    <meta name="theme-color" content="#1b1b1b">
+<meta name="theme-color" content="#1b1b1b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 </head>
 
@@ -221,17 +223,17 @@
 
     <script>
 
-    if("serviceWorker" in navigator){
+if("serviceWorker" in navigator){
 
-        navigator.serviceWorker.register(
+    navigator.serviceWorker.register(
 
-            "elbaifo_sw.js"
+        "elbaifo-sw.js"
 
-        );
+    );
 
-    }
+}
 
-    </script>
+</script>
 
 
 
