@@ -1,0 +1,23 @@
+{
+  "name": "EL BAIFO RUN",
+  "short_name": "EL BAIFO RUN",
+  "description": "Corre, salta y consigue BAIFO POINTS.",
+  "start_url": "./elbaifo.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#87CEEB",
+  "theme_color": "#87CEEB",
+  "icons": [
+    {
+      "src": "elbaifo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "elbaifo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
