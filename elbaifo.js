@@ -163,7 +163,7 @@ const player = {
 
     x:120,
 
-    y:0,
+    y:canvas.height - 35,
 
     width:70,
 
@@ -175,7 +175,7 @@ const player = {
 
     jump:-13,
 
-    grounded:false
+    grounded:true
 
 };
 
@@ -753,7 +753,7 @@ saveProfile(profile);
 function restartGame(){
 
 
-    player.y = 300;
+    player.y = canvas.height - 35;
 
     player.velocity = 0;
 
