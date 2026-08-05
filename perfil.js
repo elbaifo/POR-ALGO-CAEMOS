@@ -92,6 +92,90 @@ const COSMETICOS={
             bloqueado:true
         }
 
+    ],
+
+    baifoPersonajes:[
+
+        {
+            id:"baifo_default",
+            nombre:"El Baifo",
+            imagen:"elbaifo.png"
+        },
+
+        {
+            id:"baifo_personaje2",
+            nombre:"Próximamente",
+            bloqueado:true
+        },
+
+        {
+            id:"baifo_personaje3",
+            nombre:"Próximamente",
+            bloqueado:true
+        },
+
+        {
+            id:"baifo_personaje4",
+            nombre:"Próximamente",
+            bloqueado:true
+        }
+
+    ],
+
+    baifoFondos:[
+
+        {
+            id:"baifo_fondo_default",
+            nombre:"Fondo clásico",
+            imagen:"elbaifo_fondo.png"
+        },
+
+        {
+            id:"baifo_fondo2",
+            nombre:"Próximamente",
+            bloqueado:true
+        },
+
+        {
+            id:"baifo_fondo3",
+            nombre:"Próximamente",
+            bloqueado:true
+        },
+
+        {
+            id:"baifo_fondo4",
+            nombre:"Próximamente",
+            bloqueado:true
+        }
+
+    ],
+
+    baifoMusicas:[
+
+        {
+            id:"baifo_music_default",
+            nombre:"Música clásica",
+            imagen:"music-icon.png"
+        },
+
+        {
+            id:"baifo_music2",
+            nombre:"Próximamente",
+            bloqueado:true
+        },
+
+        {
+            id:"baifo_music3",
+            nombre:"Próximamente",
+            bloqueado:true
+        },
+
+        {
+            id:"baifo_music4",
+            nombre:"Próximamente",
+            bloqueado:true
+        }
+
     ]
 
 };
@@ -108,9 +192,17 @@ function cargarInventario(){
     const edificios=document.getElementById("inventario-edificios");
     const fondos=document.getElementById("inventario-fondos");
 
+    const baifoPersonajes=document.getElementById("inventario-baifo-personajes");
+    const baifoFondos=document.getElementById("inventario-baifo-fondos");
+    const baifoMusicas=document.getElementById("inventario-baifo-musicas");
+
     personajes.innerHTML="";
     edificios.innerHTML="";
     fondos.innerHTML="";
+
+    baifoPersonajes.innerHTML="";
+    baifoFondos.innerHTML="";
+    baifoMusicas.innerHTML="";
 
     crearCategoria(
         COSMETICOS.personajes,
@@ -131,6 +223,27 @@ function cargarInventario(){
         fondos,
         perfil,
         "fondo"
+    );
+
+    crearCategoria(
+        COSMETICOS.baifoPersonajes,
+        baifoPersonajes,
+        perfil,
+        "baifoPersonaje"
+    );
+
+    crearCategoria(
+        COSMETICOS.baifoFondos,
+        baifoFondos,
+        perfil,
+        "baifoFondo"
+    );
+
+    crearCategoria(
+        COSMETICOS.baifoMusicas,
+        baifoMusicas,
+        perfil,
+        "baifoMusica"
     );
 
 }
@@ -166,9 +279,15 @@ function crearCategoria(lista,contenedor,perfil,tipo){
 
             const obtenido=
 
-                item.id==="spiderman" ||
+    item.id==="spiderman" ||
 
-                perfil.inventario.includes(item.id);
+    item.id==="baifo_default" ||
+
+    item.id==="baifo_fondo_default" ||
+
+    item.id==="baifo_music_default" ||
+
+    perfil.inventario.includes(item.id);
 
             const equipado=
 
