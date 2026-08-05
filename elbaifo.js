@@ -276,35 +276,29 @@ function drawPlayer(){
 
 function drawObstacle(obstacle){
 
-
     ctx.fillStyle = "#333";
-
 
     ctx.fillRect(
 
-    obstacle.x,
+        obstacle.x,
 
-    canvas.height - obstacle.height,
+        canvas.height - obstacle.height,
 
-    obstacle.width,
+        obstacle.width,
 
-    obstacle.height
+        obstacle.height
 
-);
+    );
 
-
-
-
+}
 
 function drawObstacles(){
-
 
     obstacles.forEach(obstacle=>{
 
         drawObstacle(obstacle);
 
     });
-
 
 }
 
