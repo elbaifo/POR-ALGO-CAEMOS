@@ -282,18 +282,15 @@ function drawObstacle(obstacle){
 
     ctx.fillRect(
 
-        obstacle.x,
+    obstacle.x,
 
-        canvas.height - 60 - obstacle.height,
+    canvas.height - obstacle.height,
 
-        obstacle.width,
+    obstacle.width,
 
-        obstacle.height
+    obstacle.height
 
-    );
-
-
-}
+);
 
 
 
@@ -372,7 +369,7 @@ function updatePlayer(){
 
 
 
-    const ground = canvas.height - 60;
+    const ground = canvas.height;
 
 
 
@@ -498,7 +495,7 @@ function checkCollision(){
 
         const obstacleY =
 
-            canvas.height - 60 - obstacle.height;
+    canvas.height - obstacle.height;
 
 
 
