@@ -163,19 +163,17 @@ const player = {
 
     x:120,
 
-    y:300,
+    y:0,
 
     width:70,
 
     height:70,
-
 
     velocity:0,
 
     gravity:0.7,
 
     jump:-13,
-
 
     grounded:false
 
@@ -202,6 +200,25 @@ let score = 0;
 
 
 let gameSpeed = 6;
+
+const baifoFrames = [];
+
+for(let i = 1; i <= 3; i++){
+
+    const img = new Image();
+
+    img.src = i === 1
+        ? "elbaifo.png"
+        : `elbaifo${i}.png`;
+
+    baifoFrames.push(img);
+
+}
+
+
+let baifoFrame = 0;
+
+let baifoAnimacion = 0;
 
 const fondo = new Image();
 fondo.src = "canarias.png";
@@ -256,18 +273,43 @@ function drawBackground(){
 
 function drawPlayer(){
 
-    ctx.font = "70px Arial";
+    baifoAnimacion++;
 
-    ctx.textAlign = "center";
+    if(baifoAnimacion >= 8){
 
-    ctx.textBaseline = "middle";
+        baifoAnimacion = 0;
+
+        baifoFrame++;
+
+        if(baifoFrame >= baifoFrames.length){
+
+            baifoFrame = 0;
+
+        }
+
+    }
 
 
-    ctx.fillText(
-        "🐐",
-        player.x,
-        player.y
-    );
+    const sprite = baifoFrames[baifoFrame];
+
+
+    if(sprite.complete){
+
+        ctx.drawImage(
+
+            sprite,
+
+            player.x - player.width / 2,
+
+            player.y - player.height / 2,
+
+            player.width,
+
+            player.height
+
+        );
+
+    }
 
 }
 
