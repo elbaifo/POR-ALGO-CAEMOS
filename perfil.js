@@ -127,7 +127,7 @@ const COSMETICOS={
         {
             id:"baifo_fondo_default",
             nombre:"Canarias",
-            imagen:"canarias.png"
+            imagen:"canarias_icono.png"
         },
 
         {
