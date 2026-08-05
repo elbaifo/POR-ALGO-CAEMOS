@@ -182,27 +182,45 @@ const COSMETICOS={
 
 function cargarInventario(){
 
-    const perfil=obtenerPerfil();
+    const perfil = obtenerPerfil();
 
     if(!perfil){
         return;
     }
 
-    const personajes=document.getElementById("inventario-personajes");
-    const edificios=document.getElementById("inventario-edificios");
-    const fondos=document.getElementById("inventario-fondos");
+    if(!perfil.equipado){
+        perfil.equipado = {};
+    }
 
-    const baifoPersonajes=document.getElementById("inventario-baifo-personajes");
-    const baifoFondos=document.getElementById("inventario-baifo-fondos");
-    const baifoMusicas=document.getElementById("inventario-baifo-musicas");
+    if(!perfil.equipado.baifoPersonaje){
+        perfil.equipado.baifoPersonaje = "baifo_default";
+    }
 
-    personajes.innerHTML="";
-    edificios.innerHTML="";
-    fondos.innerHTML="";
+    if(!perfil.equipado.baifoFondo){
+        perfil.equipado.baifoFondo = "baifo_fondo_default";
+    }
 
-    baifoPersonajes.innerHTML="";
-    baifoFondos.innerHTML="";
-    baifoMusicas.innerHTML="";
+    if(!perfil.equipado.baifoMusica){
+        perfil.equipado.baifoMusica = "baifo_music_default";
+    }
+
+    guardarPerfil(perfil);
+
+    const personajes = document.getElementById("inventario-personajes");
+    const edificios = document.getElementById("inventario-edificios");
+    const fondos = document.getElementById("inventario-fondos");
+
+    const baifoPersonajes = document.getElementById("inventario-baifo-personajes");
+    const baifoFondos = document.getElementById("inventario-baifo-fondos");
+    const baifoMusicas = document.getElementById("inventario-baifo-musicas");
+
+    personajes.innerHTML = "";
+    edificios.innerHTML = "";
+    fondos.innerHTML = "";
+
+    if(baifoPersonajes) baifoPersonajes.innerHTML = "";
+    if(baifoFondos) baifoFondos.innerHTML = "";
+    if(baifoMusicas) baifoMusicas.innerHTML = "";
 
     crearCategoria(
         COSMETICOS.personajes,
@@ -225,26 +243,32 @@ function cargarInventario(){
         "fondo"
     );
 
-    crearCategoria(
-        COSMETICOS.baifoPersonajes,
-        baifoPersonajes,
-        perfil,
-        "baifoPersonaje"
-    );
+    if(baifoPersonajes){
+        crearCategoria(
+            COSMETICOS.baifoPersonajes,
+            baifoPersonajes,
+            perfil,
+            "baifoPersonaje"
+        );
+    }
 
-    crearCategoria(
-        COSMETICOS.baifoFondos,
-        baifoFondos,
-        perfil,
-        "baifoFondo"
-    );
+    if(baifoFondos){
+        crearCategoria(
+            COSMETICOS.baifoFondos,
+            baifoFondos,
+            perfil,
+            "baifoFondo"
+        );
+    }
 
-    crearCategoria(
-        COSMETICOS.baifoMusicas,
-        baifoMusicas,
-        perfil,
-        "baifoMusica"
-    );
+    if(baifoMusicas){
+        crearCategoria(
+            COSMETICOS.baifoMusicas,
+            baifoMusicas,
+            perfil,
+            "baifoMusica"
+        );
+    }
 
 }
 
