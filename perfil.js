@@ -126,8 +126,8 @@ const COSMETICOS={
 
         {
             id:"baifo_fondo_default",
-            nombre:"Fondo clásico",
-            imagen:"elbaifo_fondo.png"
+            nombre:"Canarias",
+            imagen:"canarias.png"
         },
 
         {
@@ -154,8 +154,8 @@ const COSMETICOS={
 
         {
             id:"baifo_music_default",
-            nombre:"Música clásica",
-            imagen:"music-icon.png"
+            nombre:"Columbia",
+            imagen:"columbia.png"
         },
 
         {
