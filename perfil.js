@@ -301,7 +301,7 @@ function crearCategoria(lista,contenedor,perfil,tipo){
 
         }else{
 
-            const obtenido=
+            const obtenido =
 
     item.id==="spiderman" ||
 
@@ -311,7 +311,7 @@ function crearCategoria(lista,contenedor,perfil,tipo){
 
     item.id==="baifo_music_default" ||
 
-    perfil.inventario.includes(item.id);
+    (perfil.inventario && perfil.inventario.includes(item.id));
 
             const equipado=
 
