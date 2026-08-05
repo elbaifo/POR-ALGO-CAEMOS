@@ -263,7 +263,11 @@ function crearPerfil(){
 equipado:{
     personaje:"spiderman",
     edificio:"edificio_noche",
-    fondo:"ciudad_noche"
+    fondo:"ciudad_noche",
+
+    baifoPersonaje:"baifo_default",
+    baifoFondo:"baifo_fondo_default",
+    baifoMusica:"baifo_music_default"
 },
 
 ajustes:{},
