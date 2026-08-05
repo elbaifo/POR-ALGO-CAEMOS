@@ -163,7 +163,7 @@ const player = {
 
     x:120,
 
-    y:canvas.height - 35,
+    y:0,
 
     width:70,
 
@@ -175,7 +175,7 @@ const player = {
 
     jump:-13,
 
-    grounded:true
+    grounded:false
 
 };
 
@@ -225,9 +225,12 @@ fondo.src = "canarias.png";
 
 let fondoX = 0;
 
+
+
+
 function drawBackground(){
 
-    if(fondo.complete){
+    if(fondo.complete && fondo.naturalWidth > 0){
 
         ctx.drawImage(
             fondo,
@@ -258,7 +261,9 @@ function drawBackground(){
 
     }
 
+
     fondoX -= gameSpeed * 0.4;
+
 
     if(fondoX <= -canvas.width){
 
@@ -293,23 +298,17 @@ function drawPlayer(){
     const sprite = baifoFrames[baifoFrame];
 
 
-    if(sprite.complete){
+    if(sprite.complete && sprite.naturalWidth > 0){
 
-        ctx.drawImage(
+    ctx.drawImage(
+        sprite,
+        player.x - player.width / 2,
+        player.y - player.height / 2,
+        player.width,
+        player.height
+    );
 
-            sprite,
-
-            player.x - player.width / 2,
-
-            player.y - player.height / 2,
-
-            player.width,
-
-            player.height
-
-        );
-
-    }
+}
 
 }
 
@@ -644,6 +643,10 @@ function startGame(){
 
         gameSpeed = 6;
 
+        player.y = canvas.height -                       player.height / 2;
+player.velocity = 0;
+player.grounded = true;
+
         scoreElement.textContent = 0;
 
         startScreen.style.display = "none";
@@ -753,7 +756,7 @@ saveProfile(profile);
 function restartGame(){
 
 
-    player.y = canvas.height - 35;
+    player.y = canvas.height - player.height / 2;
 
     player.velocity = 0;
 
