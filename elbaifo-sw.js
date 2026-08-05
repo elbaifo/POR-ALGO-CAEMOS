@@ -2,11 +2,11 @@ const CACHE_NAME = "el-baifo-run-v1";
 
 const ARCHIVOS = [
 
-    "./elbaiforun.html",
+    "./elbaifo.html",
 
-    "./elbaiforun.css",
+    "./elbaifo.css",
 
-    "./elbaiforun.js",
+    "./elbaifo.js",
 
     "./elbaifo-manifest.json",
 
