@@ -203,26 +203,51 @@ let score = 0;
 
 let gameSpeed = 6;
 
+const fondo = new Image();
+fondo.src = "canarias.png";
+
+let fondoX = 0;
+
 function drawBackground(){
 
-    ctx.fillStyle = "#87CEEB";
+    if(fondo.complete){
 
-    ctx.fillRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
+        ctx.drawImage(
+            fondo,
+            fondoX,
+            0,
+            canvas.width,
+            canvas.height
+        );
 
+        ctx.drawImage(
+            fondo,
+            fondoX + canvas.width,
+            0,
+            canvas.width,
+            canvas.height
+        );
 
-    ctx.fillStyle = "#4CAF50";
+    }else{
 
-    ctx.fillRect(
-        0,
-        canvas.height - 60,
-        canvas.width,
-        60
-    );
+        ctx.fillStyle = "#87CEEB";
+
+        ctx.fillRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+    }
+
+    fondoX -= gameSpeed * 0.4;
+
+    if(fondoX <= -canvas.width){
+
+        fondoX = 0;
+
+    }
 
 }
 
