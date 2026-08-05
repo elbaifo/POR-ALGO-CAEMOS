@@ -201,23 +201,28 @@ let score = 0;
 
 let gameSpeed = 6;
 
-const baifoFrames = [];
+const correrFrames = [];
 
-for(let i = 1; i <= 3; i++){
+[
+    "elbaifo.png",
+    "elbaifo2.png",
+    "elbaifo3.png",
+    "elbaifo4.png"
+].forEach(nombre => {
 
     const img = new Image();
+    img.src = nombre;
+    correrFrames.push(img);
 
-    img.src = i === 1
-        ? "elbaifo.png"
-        : `elbaifo${i}.png`;
+});
 
-    baifoFrames.push(img);
+const saltoFrame = new Image();
+saltoFrame.src = "elbaifo_salto.png";
 
-}
-
+const caidaFrame = new Image();
+caidaFrame.src = "elbaifo_caida.png";
 
 let baifoFrame = 0;
-
 let baifoAnimacion = 0;
 
 const fondo = new Image();
@@ -278,37 +283,53 @@ function drawBackground(){
 
 function drawPlayer(){
 
-    baifoAnimacion++;
+    let sprite;
 
-    if(baifoAnimacion >= 8){
+    if(!player.grounded){
 
-        baifoAnimacion = 0;
+        if(player.velocity < 0){
 
-        baifoFrame++;
+            sprite = saltoFrame;
 
-        if(baifoFrame >= baifoFrames.length){
+        }else{
 
-            baifoFrame = 0;
+            sprite = caidaFrame;
 
         }
 
+    }else{
+
+        baifoAnimacion++;
+
+        if(baifoAnimacion >= 8){
+
+            baifoAnimacion = 0;
+
+            baifoFrame++;
+
+            if(baifoFrame >= correrFrames.length){
+
+                baifoFrame = 0;
+
+            }
+
+        }
+
+        sprite = correrFrames[baifoFrame];
+
     }
-
-
-    const sprite = baifoFrames[baifoFrame];
-
 
     if(sprite.complete && sprite.naturalWidth > 0){
 
-    ctx.drawImage(
-        sprite,
-        player.x - player.width / 2,
-        player.y - player.height / 2,
-        player.width,
-        player.height
-    );
+        ctx.drawImage(
+            sprite,
+            player.x - player.width / 2,
+            player.y - player.height / 2,
+            player.width,
+            player.height
+        );
 
-}
+    }
 
 }
 
